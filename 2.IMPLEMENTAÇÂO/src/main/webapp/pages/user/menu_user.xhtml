@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/template/template_user.xhtml"
+	xmlns:o="http://omnifaces.org/ui">
+
+	<f:metadata>
+		<o:viewParam name="cat" value="#{menuUserBean.filter.category}" />
+	</f:metadata>
+
+	<ui:define name="header">
+		<h:outputStylesheet name="alternative.css" library="css" />
+	</ui:define>
+
+
+
+	<h:head>
+
+	</h:head>
+
+	<ui:define name="title">Cardapio</ui:define>
+
+
+	<ui:define name="container">
+		<h:body>
+
+			<p:messages autoUpdate="true" showSummary="true"></p:messages>
+
+			<h:form id="form">
+
+				<div align="center" class="ui-fluid">
+					<p:dataGrid var="item" value="#{menuUserBean.model}" columns="6"
+						layout="grid" rows="32" paginator="true" id="menus"
+						paginatorPosition="bottom" lazy="true">
+
+						<f:facet name="header">
+
+							<div align="right">
+
+								<p:commandButton id="filteItemBtn" icon="fa fa-filter"
+									type="button" style="width:3%;;" />
+
+								<p:overlayPanel id="filterItens" for="filteItemBtn"
+									hideEffect="fade" style="width:20%" widgetVar="dlg-filter">
+
+									<div align="left">
+										<p:panelGrid layout="grid" columns="1"
+											styleClass="ui-panelgrid-blank">
+											<p:outputLabel value="Filtrar Itens" style="font-size:1.5em"></p:outputLabel>
+
+
+											<h:panelGrid columns="1">
+
+												<h:outputText id="displayRange"
+													value="Between #{menuUserBean.priceMin} and #{menuUserBean.priceMax}" />
+												<p:slider for="pricemMin, priceMax" display="displayRange"
+													style="width: 100%" range="true"
+													displayTemplate="Preço entre  {min} R$ e {max} R$ " />
+											</h:panelGrid>
+
+											<h:inputHidden id="pricemMin"
+												value="#{menuUserBean.priceMin}" />
+											<h:inputHidden id="priceMax" value="#{menuUserBean.priceMax}" />
+
+											<p:outputLabel value="classificão"></p:outputLabel>
+											<p:rating value="#{menuUserBean.filter.rating}"></p:rating>
+
+											<p:panelGrid layout="grid" columns="2">
+
+												<p:commandButton id="btnDlgFilter" value="Filtrar"
+													action="#{menuUserBean.setUpdate()}" process="@form"
+													update="menus filteItemBtn"
+													oncomplete="PF('dlg-filter').hide();" />
+
+												<p:commandButton id="btnFilter" value="Cancelar"
+													oncomplete="PF('dlg-filter').hide();" />
+
+											</p:panelGrid>
+
+										</p:panelGrid>
+									</div>
+								</p:overlayPanel>
+
+
+
+								<p:inputText id="globalFilter" style="width:15%;"
+									placeholder="Digite para Buscar"
+									value="#{menuUserBean.filter.name}">
+
+									<!-- 									<p:ajax event="change" process="@form"></p:ajax>
+ -->
+								</p:inputText>
+
+								<p:commandButton icon="fa fa-search"
+									style="display:inline; width:40px;" process="@form"
+									update="menus" />
+
+
+							</div>
+
+
+						</f:facet>
+
+
+
+						<p:panel style="text-align:center;">
+							<p:panelGrid layout="grid" columns="1" style="width:100%">
+
+								<p:graphicImage styleClass="img-menu" library="images"
+									name="#{item.product.pathFile}" />
+
+								<h:outputText value="#{item.product.name}" />
+								<h:outputText value=" R$ #{item.price}" />
+
+								<p:commandButton value="adicionar" oncomplete="PF('dlg').show()"
+									update=":dialog">
+									<f:setPropertyActionListener value="#{item}"
+										target="#{customerKartBean.itemMenu}" />
+									<p:resetInput target="menus" />
+								</p:commandButton>
+
+
+								<p:button icon="fa fa-plus" value="detalhes"
+									outcome="/pages/user/item_product_detail">
+
+									<f:param name="item_product" value="#{item.id}"></f:param>
+								</p:button>
+							</p:panelGrid>
+						</p:panel>
+
+					</p:dataGrid>
+				</div>
+
+			</h:form>
+
+			<h:form id="dialog">
+
+				<p:dialog id="dialog" modal="true" header="Registrar Item"
+					widgetVar="dlg" width="300" height="200" resizable="false"
+					closable="true" appendToBody="false" responsive="true"
+					style="background:white !important;">
+
+					<div align="center" class="ui-fluid">
+
+						<p:panelGrid columns="2"
+							style="width:100% ;background:white !important;" layout="grid">
+
+							<h:outputText value="nome" />
+							<h:outputText id="name"
+								value="#{customerKartBean.itemMenu.product.name}" />
+
+							<h:outputText value="descrição" />
+							<p:outputLabel
+								value="#{customerKartBean.itemMenu.product.description}" />
+
+							<h:outputText value="preço" />
+							<h:outputText value=" R$ #{customerKartBean.itemMenu.price}" />
+
+							<h:outputText value="quantidade" />
+							<p:spinner id="basic"
+								value="#{customerKartBean.itemProduct.amount}" size="10" />
+
+
+						</p:panelGrid>
+						<br />
+
+						<p:commandButton value="confirmar"
+							action="#{customerKartBean.saveItemProduct()}"
+							oncomplete="PF('dlg').hide();" update=":form-menu-superior"></p:commandButton>
+
+					</div>
+				</p:dialog>
+
+
+			</h:form>
+
+
+		</h:body>
+	</ui:define>
+</ui:composition>

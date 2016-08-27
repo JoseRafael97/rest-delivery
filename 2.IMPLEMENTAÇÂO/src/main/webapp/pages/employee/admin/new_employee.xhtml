@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/template/template.xhtml"
+	xmlns:o="http://omnifaces.org/ui">
+
+	<f:metadata>
+
+		<o:viewParam name="addressemp" value="#{addressBean.address}"
+			converter="#{addressConverter}" />
+
+		<f:event listener="#{addressBean.init()}" type="preRenderView"></f:event>
+
+		<o:viewParam name="employee" value="#{employeeBean.employee}"
+			converter="#{employeeConverter}" />
+
+		<f:event listener="#{employeeBean.init()}" type="preRenderView"></f:event>
+
+
+
+	</f:metadata>
+
+
+	<h:head>
+
+	</h:head>
+
+	<ui:define name="title">Funcionário</ui:define>>
+	
+	<ui:define name="labelcenter">Funcionário</ui:define>
+
+	<ui:define name="container">
+		<h:body>
+
+
+
+
+
+			<h:form id="form">
+
+				<p:breadCrumb>
+					<p:menuitem value="Dashboard"
+						outcome="/pages/employee/main_page_emp" />
+
+					<p:menuitem value="Funcionários"
+						outcome="/pages/employee/admin/employee" />
+					<p:menuitem value="Novo Funcionário"
+						outcome="/pages/employee/admin/new_employee" />
+
+
+				</p:breadCrumb>
+
+
+				<div align="center" class="ui-fluid">
+
+					<div align="left">
+
+						<p:tabView style="width:100%">
+
+							<p:tab title="Conta" style="width:100%">
+
+								<p:messages  autoUpdate="true"  />
+
+
+								<p:panelGrid styleClass="ui-panelgrid-blank" columns="2"
+									layout="grid">
+									<p:outputLabel for="email" value="e-mail"></p:outputLabel>
+									<p:inputText id="email"
+										value="#{employeeBean.employee.user.email}" required="true"></p:inputText>
+
+
+									<p:outputLabel for="user" value="username"></p:outputLabel>
+									<p:inputText required="true" id="user"
+										value="#{employeeBean.employee.user.login}"></p:inputText>
+
+									<p:outputLabel for="password" value="Senha"></p:outputLabel>
+									<p:password required="true" id="password"
+										value="#{employeeBean.employee.user.password}"></p:password>
+
+									<p:outputLabel for="sel_paper" value="Papel"></p:outputLabel>
+									<p:selectOneMenu id="sel_paper" required="true"
+										value="#{employeeBean.employee.user.grupo}">
+
+										<f:selectItem itemLabel="Selecione o papel" />
+										<f:selectItems value="#{employeeBean.groupsEmloyee}" var="g"
+											itemLabel="#{g.valor}" itemValue="#{g}"></f:selectItems>
+									</p:selectOneMenu>
+
+
+								</p:panelGrid>
+							</p:tab>
+
+							<p:tab title="Informações Pessoais" style="width:100%">
+
+								<p:messages  autoUpdate="true" />
+
+								<p:panelGrid styleClass="ui-panelgrid-blank" columns="2"
+									layout="grid" style="width:100%">
+
+									<p:outputLabel for="name" value="nome"></p:outputLabel>
+									<p:inputText id="name" value="#{employeeBean.employee.name}"
+										required="true"></p:inputText>
+
+									<p:outputLabel for="tellphone" value="Telefone"></p:outputLabel>
+									<p:inputMask id="tellphone" mask="(99)9999-99999"
+										value="#{employeeBean.employee.tellphone}" required="true"></p:inputMask>
+
+
+									<p:outputLabel for="sexo" value="sexo" />
+									<p:selectOneMenu id="sexo"
+										value="#{employeeBean.employee.sexo}" required="true">
+										<f:selectItem itemLabel="Selecione uma opção" itemValue="" />
+										<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+										<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+									</p:selectOneMenu>
+
+									<p:outputLabel for="cpf" value="CPF"></p:outputLabel>
+									<p:inputMask id="cpf" mask="999.999.999-99"
+										value="#{employeeBean.employee.cpf}" required="true"></p:inputMask>
+
+									<p:outputLabel for="rg" value="RG"></p:outputLabel>
+									<p:inputMask id="rg" placeholder="Ex: 1234667-4/SSPSP"
+										value="#{employeeBean.employee.rg}" required="true"></p:inputMask>
+
+
+									<p:outputLabel for="ctps" value="CTPS"></p:outputLabel>
+									<p:inputText id="ctps" value="#{employeeBean.employee.ctps}"
+										required="true" />
+
+								</p:panelGrid>
+							</p:tab>
+
+							<p:tab title="Endereço" style="width:100%; font-size:none!important" >
+								<p:messages autoUpdate="true" />
+
+
+								<p:panelGrid styleClass="ui-panelgrid-blank" id="panelAd"
+									columns="2" layout="grid" style="width:100%">
+
+									<p:outputLabel for="txtStreet" value="Rua" />
+									<p:autoComplete id="txtStreet"
+										value="#{addressBean.address.street}" required="true"
+										var="address"
+										completeMethod="#{addressBean.completeAddress}" >
+
+										<p:ajax event="itemSelect"
+											listener="#{addressBean.onItemSelect(address)}"
+											update="txtneighhood txtZipCode listState" process="@this" />
+									</p:autoComplete>
+
+									<p:outputLabel for="txtneighhood" value="Bairro" />
+									<p:inputText id="txtneighhood"
+										value="#{addressBean.address.neighborhood}" required="true" />
+
+									<p:outputLabel for="txtNumbe" value="Nº " />
+									<p:inputText id="txtNumbe"
+										value="#{addressBean.address.number}" required="true">
+									</p:inputText>
+
+									<p:outputLabel for="txtComplement" value="Complemento" />
+									<p:inputTextarea id="txtComplement"
+										value="#{addressBean.address.complement}" />
+
+
+									<p:outputLabel for="txtZipCode" value="Cep" />
+									<p:inputMask id="txtZipCode"
+										value="#{addressBean.address.zipCode}" mask="99999-999"
+										required="true" />
+
+
+									<p:outputLabel for="listState" value="Estado" />
+									<p:selectOneMenu id="listState" effect="fade"
+										value="#{addressBean.address.state}" required="true">
+
+										<f:selectItem itemLabel="Selecione seu estado" itemValue="" />
+										<f:selectItems id="list" value="#{addressBean.stateName}"
+											var="state" itemLabel="#{state.nome}"
+											itemValue="#{state.nome}" required="true" />
+
+										<p:ajax event="change" update="listcity"
+											listener="#{addressBean.subjectSelectionChanged}" />
+
+									</p:selectOneMenu>
+
+									<p:outputLabel for="listcity" value="Cidade" />
+
+									<p:selectOneMenu id="listcity" effect="fade"
+										value="#{addressBean.address.city}" required="true"
+										filter="true" filterMatchMode="startsWith">
+
+										<f:selectItems id="listcit" value="#{addressBean.loadingCity}"
+											var="city" itemLabel="#{city}" itemValue="#{city}" />
+
+									</p:selectOneMenu>
+
+
+
+								</p:panelGrid>
+
+							</p:tab>
+						</p:tabView>
+
+					</div>
+
+				</div>
+				<p:toolbar style="background:white">
+
+					<f:facet name="left">
+						<p:commandButton value="registrar" action="#{employeeBean.save()}"
+							style="width:100px">
+
+							<f:setPropertyActionListener value="#{addressBean.address}"
+								target="#{employeeBean.employee.address}"></f:setPropertyActionListener>
+						</p:commandButton>
+
+						<p:button value="cancelar"
+							outcome="/pages/employee/admin/employee" style="width:100px"></p:button>
+					</f:facet>
+
+				</p:toolbar>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>

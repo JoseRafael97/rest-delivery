@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/template/template.xhtml"
+	xmlns:o="http://omnifaces.org/ui">
+
+	<f:metadata>
+		<o:viewParam name="product" value="#{productBean.product}"
+			converter="#{productConverter}" />
+
+		<f:event listener="#{productBean.init()}" type="preRenderView"></f:event>
+	</f:metadata>
+
+
+	<h:head>
+		<ui:define name="title">Products</ui:define>
+		<h:outputStylesheet name="buttonStyle.css" library="css" />
+		<h:outputStylesheet name="painelgrid.css" library="css" />
+
+
+	</h:head>
+
+	<ui:define name="labelcenter">Novo Item</ui:define>
+
+	<ui:define name="title">Item de menu</ui:define>
+
+
+	<ui:define name="container">
+
+
+
+		<p:growl id="mensages" autoUpdate="true" showDetail="true"
+			showSummary="true" />
+
+
+		<h:form id="registerProduct">
+			<p:growl id="messages" showDetail="true" autoUpdate="true" />
+
+
+			<p:breadCrumb>
+
+				<p:menuitem value="Dashboard"
+					outcome="/pages/employee/main_page_emp" />
+
+				<p:menuitem value="Itens de cardápio"
+					outcome="/pages/employee/product" />
+
+				<p:menuitem value="Novo item de cardápio"
+					outcome="/pages/employee/new_product" />
+
+
+			</p:breadCrumb>
+
+
+			<div class="ui-fluid" align="center">
+
+
+				<div align="center" class="ui-fluid painel-product">
+
+					<p:panelGrid id="registerProducts" columns="2"
+						columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid"
+						style="width:100%">
+
+						<p:outputLabel for="txtName" value="Nome" id="labelName" />
+						<p:inputText required="true" id="txtName"
+							value="#{productBean.product.name}" />
+
+						<p:outputLabel for="txtdesc" id="lbdescription" value="Descrição" />
+						<p:inputTextarea id="txtdesc"
+							value="#{productBean.product.description}" />
+
+						<p:outputLabel for="txtInformationNu" id="lbInfoNutri"
+							value="Info. Nutricional" />
+						<p:inputTextarea id="txtInformationNu"
+							value="#{productBean.product.nutricionInformations}" />
+
+						<p:outputLabel for="txtwg" id="lbwg" value="Peso em (g)" />
+						<p:inputNumber id="txtwg" value="#{productBean.product.weight}">
+							<f:convertNumber maxFractionDigits="3" />
+						</p:inputNumber>
+
+						<p:outputLabel value="Image Item"></p:outputLabel>
+						<p:fileUpload fileUploadListener="#{productBean.handleFileUpload}"
+							mode="advanced" dragDropSupport="false" update="messages"
+							sizeLimit="1000000" fileLimit="3"
+							allowTypes="/(\.|\/)(gif|jpe?g|png)$/" required="true" />
+
+
+						<p:outputLabel for="listcat" value="Categoria " />
+						<p:selectOneMenu required="true"
+							requiredMessage="Selecione uma categoria" id="listcat"
+							effect="fade" value="#{productBean.product.category}">
+							<f:selectItem itemLabel="Selecione uma Categoria" itemValue="" />
+
+							<f:selectItems id="listcatego" value="#{productBean.categories}"
+								var="category" itemLabel="#{category.nome}"
+								itemValue="#{category}" />
+
+						</p:selectOneMenu>
+
+						<br />
+
+					</p:panelGrid>
+
+					<p:toolbar style="background:white">
+
+						<f:facet name="left">
+							<p:commandButton value="Registrar" action="#{productBean.save()}"
+								styleClass="btn" update="registerProducts" style="width:44%">
+							</p:commandButton>
+
+							<p:button value="cancelar" outcome="product?faces-redirect=true"
+								style="width:44%"></p:button>
+
+						</f:facet>
+
+					</p:toolbar>
+
+				</div>
+			</div>
+
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
