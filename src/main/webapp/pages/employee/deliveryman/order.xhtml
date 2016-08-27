@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/template/template.xhtml">
+
+	<f:metadata>
+
+	</f:metadata>
+
+
+	<h:head>
+
+
+	</h:head>
+
+
+	<ui:define name="container">
+
+		<div class="ui-fluid">
+			<h:body>
+				<p:growl id="mensages" autoUpdate="true" showDetail="true"
+					showSummary="true" />
+
+				<h:form id="form">
+					<p:growl id="msgs" showDetail="true" />
+
+					<p:breadCrumb>
+						<p:menuitem value="Dashboard"
+							outcome="/pages/employee/main_page_emp?faces-redirect=true" />
+
+
+					</p:breadCrumb>
+
+					<div class="ui-fluid" align="center">
+
+
+						<p:dataTable id="tabOrder" var="order"
+							emptyMessage="Nao existe dados correspondentes."
+							value="#{listOrderBean.orders}" editable="true"
+							style="margin-bottom:40px; width:100%;" paginator="true"
+							paginatorPosition="bottom" rows="20" reflow="true" widgetVar="od">
+
+							<p:ajax event="rowEdit" listener="#{listOrderBean.onRowEdit}"
+								update=":form:msgs" />
+							<p:ajax event="rowEditCancel"
+								listener="#{listOrderBean.onRowCancel}" update=":form:msgs" />
+
+
+							<f:facet name="header">
+
+								<div align="left">
+									<p:inputText id="globalFilter" onkeyup="PF('od').filter()"
+										style="width:15%;" placeholder="Digite para Buscar" />
+
+
+								</div>
+							</f:facet>
+
+							<p:rowExpansion>
+								<p:dataTable id="subTab" value="#{order.itemProducts}"
+									var="itemProduct">
+
+									<p:column headerText="Nome" width="140">
+										<h:outputText value="#{itemProduct.itemMenu.product.name}" />
+									</p:column>
+
+									<p:column headerText="Quant." width="160">
+										<h:outputText value="#{itemProduct.amount}" />
+									</p:column>
+
+									<p:column headerText="Preço" width="160">
+										<h:outputText value="R$ #{itemProduct.price}" />
+									</p:column>
+
+
+								</p:dataTable>
+							</p:rowExpansion>
+
+							<p:column style="width:4%">
+								<p:rowToggler />
+							</p:column>
+
+
+
+							<p:column filterStyle="display:none;" filterBy="#{order.id}"
+								headerText="Id" width="3%">
+								<h:outputText value="#{order.id}" />
+							</p:column>
+
+							<p:column filterStyle="display:none;"
+								filterBy="#{order.totalprice}" headerText="Cliente" width="13%">
+								<h:outputText value="#{order.customer.name}" />
+							</p:column>
+
+							<p:column filterStyle="display:none;" filterBy="#{order.data}"
+								headerText="Data" width="13%">
+
+								<h:outputText value="#{order.data}">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+								</h:outputText>
+							</p:column>
+
+							<p:column filterStyle="display:none;"
+								filterBy="#{order.totalprice}" headerText="Preco Total"
+								width="5%">
+								<h:outputText value="R$ #{order.totalprice}" />
+							</p:column>
+
+
+
+							<p:column filterStyle="display:none;"
+								filterBy="#{order.delivery.state}" headerText="Situação"
+								width="10%">
+
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText
+											value="#{order.delivery.state == true ? 'Finalizado' : 'Em Andamento'}" />
+									</f:facet>
+									<f:facet name="input">
+										<p:selectOneMenu value="#{order.delivery.state}">
+											<f:selectItem itemValue="true" itemLabel="Finalizado" />
+											<f:selectItem itemValue="false" itemLabel="Em Andamento" />
+
+										</p:selectOneMenu>
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+
+							<p:column width="2%" rendered="#{authenticateBen.iCheckUserDeliveryMan()}">
+								<p:rowEditor  rendered="#{authenticateBen.iCheckUserDeliveryMan()}"/>
+							</p:column>
+
+
+
+						</p:dataTable>
+					</div>
+				</h:form>
+
+			</h:body>
+		</div>
+	</ui:define>
+</ui:composition>

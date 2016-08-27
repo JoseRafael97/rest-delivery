@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/template/template.xhtml"
+	xmlns:o="http://omnifaces.org/ui">
+
+
+	<f:metadata>
+
+		<o:viewParam name="emp" value="#{employeeBean.employee}"
+			converter="#{employeeConverter}" />
+
+
+	</f:metadata>
+
+
+	<h:head>
+
+
+	</h:head>
+
+	<ui:define name="labelcenter">Funcionário</ui:define>
+
+
+	<ui:define name="title">Funcionário</ui:define>>
+	
+
+	<ui:define name="container">
+		<div class="ui-fluid">
+			<h:body>
+				<p:growl id="mensages" autoUpdate="true" showDetail="true"
+					showSummary="true" />
+				<h:form id="form">
+					<p:growl id="msgs" showDetail="true" />
+
+					<p:breadCrumb>
+						<p:menuitem value="Funcionários"
+							outcome="employee?faces-redirect=true" />
+
+						<p:menuitem value="Cadastrar funcionário"
+							outcome="new_employee?faces-redirect=true" />
+
+
+					</p:breadCrumb>
+					<br />
+
+					<div align="center" class="ui-fluid  newpro">
+
+
+						<div align="left" class="ui-fluid painel-product">
+
+
+
+							<p:panelGrid columns="2" style="width:100%" layout="grid">
+
+								<f:facet name="header">
+           						Detalhe do funcionário
+      					  	</f:facet>
+
+								<p:outputLabel value="Nome:" />
+								<p:outputLabel id="outName"
+									value="#{employeeBean.employee.name}"
+									style="color:black !important" />
+
+								<p:outputLabel value="Username" />
+								<p:outputLabel id="outUsername"
+									value="#{employeeBean.employee.user.login}" />
+
+								<p:outputLabel value="Sexo" />
+								<p:outputLabel id="outSexo"
+									value="#{employeeBean.employee.sexo}" />
+
+								<p:outputLabel value="E-mail" />
+								<p:outputLabel id="outEmail"
+									value="#{employeeBean.employee.user.email}" />
+
+								<p:outputLabel value="Telefone" />
+								<p:outputLabel id="outTelefone"
+									value="#{employeeBean.employee.tellphone}" />
+
+								<p:outputLabel value="CPF" />
+								<p:outputLabel id="outCpf" value="#{employeeBean.employee.cpf}" />
+
+								<p:outputLabel value="RG" />
+								<p:outputLabel id="outRg" value="#{employeeBean.employee.rg}" />
+
+								<p:outputLabel value="CTPS" />
+								<p:outputLabel id="outCtps"
+									value="#{employeeBean.employee.ctps}" />
+
+								<p:outputLabel value="Rua" />
+								<p:outputLabel id="outRua"
+									value="#{employeeBean.employee.address.street}" />
+
+								<p:outputLabel value="Bairro" />
+								<p:outputLabel id="outBairro"
+									value="#{employeeBean.employee.address.neighborhood}" />
+
+								<p:outputLabel value="Cep" />
+								<p:outputLabel id="outCep"
+									value="#{employeeBean.employee.address.zipCode}" />
+
+								<p:outputLabel value="Complemento" />
+								<p:outputLabel id="outComp"
+									value="#{employeeBean.employee.address.complement}" />
+
+
+								<p:outputLabel value="Nª" />
+								<p:outputLabel id="outNumber"
+									value="#{employeeBean.employee.address.number}" />
+
+								<p:outputLabel value="Cidade" />
+								<p:outputLabel id="outCity"
+									value="#{employeeBean.employee.address.city}" />
+
+								<p:outputLabel value="Estado" />
+								<p:outputLabel id="outState"
+									value="#{employeeBean.employee.address.state}" />
+
+							</p:panelGrid>
+							<p:toolbar>
+
+								<f:facet name="left">
+									<p:button value="Voltar"  outcome="employee?faces-redirect=true"/>
+
+										
+								</f:facet>
+
+							</p:toolbar>
+
+						</div>
+					</div>
+				</h:form>
+
+
+			</h:body>
+		</div>
+	</ui:define>
+</ui:composition>

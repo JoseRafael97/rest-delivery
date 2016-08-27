@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/template/template_user.xhtml">
+
+	<f:metadata>
+
+		<f:event listener="#{itemMenuBean.preRendererView()}"
+			type="preRenderView"></f:event>
+
+
+		<o:viewParam name="item_product" value="#{itemMenuBean.itemMenu}"
+			converter="#{itemMenuConverter}" />
+
+
+	</f:metadata>
+
+
+	<h:head>
+
+	</h:head>
+
+
+
+	<ui:define name="container">
+
+		<h:body>
+
+			<h:form id="form">
+
+				<p:growl id="growl" showDetail="true" sticky="true"
+					autoUpdate="true" />
+
+
+				<div class="ui-fluid">
+
+
+
+					<p:panelGrid layout="grid" columns="2">
+
+						<p:panelGrid layout="grid" columns="1" style="padding:1px;">
+
+							<div align="right">
+								<p:graphicImage library="images" styleClass="img-menu-detail"
+									name="#{itemMenuBean.itemMenu.product.pathFile}" />
+							</div>
+
+						</p:panelGrid>
+
+						<p:panelGrid columns="1" style="width:100%" layout="grid">
+
+							<p:outputLabel value="#{itemMenuBean.itemMenu.product.name}"
+								style="font-size:2.1em"></p:outputLabel>
+
+							<p:outputLabel
+								value="#{itemMenuBean.itemMenu.product.description}"></p:outputLabel>
+
+							<p:rating value="#{itemMenuBean.number}" readonly="true"></p:rating>
+
+							<p:panelGrid layout="grid" columns="2"
+								styleClass="ui-panelgrid-blank">
+
+
+								<p:panelGrid columns="1" layout="grid"
+									styleClass="ui-panelgrid-blank">
+									<p:outputLabel value="R$ #{itemMenuBean.itemMenu.price}"
+										style="font-size:2.2em"></p:outputLabel>
+									<p:outputLabel value="Pagamento via cartão de crédito"></p:outputLabel>
+								</p:panelGrid>
+
+								<p:panelGrid columns="1" layout="grid"
+									styleClass="ui-panelgrid-blank">
+
+									<p:commandButton value="Adicionar"
+										oncomplete="PF('dlg').show()" update=":dialog">
+										<f:setPropertyActionListener value="#{item}"
+											target="#{customerKartBean.itemMenu}" />
+										<p:resetInput target="menus" />
+									</p:commandButton>
+
+									<p:commandButton value="Voltar" oncomplete="PF('dlg').show()"
+										update=":dialog">
+										<f:setPropertyActionListener value="#{item}"
+											target="#{customerKartBean.itemMenu}" />
+										<p:resetInput target="menus" />
+									</p:commandButton>
+								</p:panelGrid>
+
+							</p:panelGrid>
+
+
+						</p:panelGrid>
+
+
+
+
+					</p:panelGrid>
+
+					<p:panelGrid layout="grid" columns="1"
+						styleClass="ui-panelgrid-blank">
+
+						<p:outputLabel value="Informações Nutricionais"
+							style="font-size:1.4em"></p:outputLabel>
+						<p:outputLabel
+							value="#{itemMenuBean.itemMenu.product.nutricionInformations}"
+							style="font-size:1em"></p:outputLabel>
+
+
+						<p:outputLabel value="Comentários" style="font-size:1.4em"></p:outputLabel>
+
+						<p:panelGrid columns="1" layout="grid">
+
+
+							<p:dataGrid var="rt"
+								value="#{itemMenuBean.itemMenu.product.ratingProducts}"
+								style="width:100%" emptyMessage="Este item ainda foi avaliado.">
+
+								<p:panel menuTitle="#{rt.number}">
+
+									<f:facet name="header">
+
+										<div align="left">
+
+											<p:rating value="#{rt.number.intValue()}" readonly="true"></p:rating>
+
+										</div>
+									</f:facet>
+									<p:outputLabel value="#{rt.comment}"></p:outputLabel>
+								</p:panel>
+							</p:dataGrid>
+						</p:panelGrid>
+					</p:panelGrid>
+				</div>
+
+			</h:form>
+
+			<h:form id="dialog">
+				<p:growl id="message" showDetail="true" />
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+					widgetVar="dlg" header="Values">
+					<p:commandButton value="Sim" update="form" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close"
+						update="tabProduct" />
+				</p:confirmDialog>
+
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>
