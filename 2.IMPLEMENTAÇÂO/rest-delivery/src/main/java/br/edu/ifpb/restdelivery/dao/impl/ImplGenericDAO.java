@@ -99,7 +99,7 @@ public class ImplGenericDAO<T, K extends Serializable> implements GenericDAO<T, 
 	 * Busca um objeto do tipo específicado, que possui o mesmo identificador passado como parâmetro.
 	 */
 	@Override
-	public T find(K key) throws RestDeliveryPersistenceException {
+	/*public T find(K key) throws RestDeliveryPersistenceException {
 		try {
 
 			T instance = em.find(persistentClass, key);
@@ -110,22 +110,22 @@ public class ImplGenericDAO<T, K extends Serializable> implements GenericDAO<T, 
 			throw new RestDeliveryPersistenceException("Não existe nenhum objeto com essa chave");
 		}
 	}
-
+*/
 	/**
 	 * Recupera a instância do entity manager injetada.
 	 * @return entitymanager
 	 */
-	protected EntityManager getEntityManager() {
+/*	protected EntityManager getEntityManager() {
 		return em;
-	}
+	}*/
 	
 
 	/**
 	 * Recupera a sessão atual.
 	 * @return
 	 */
-	protected Session getSession() {
+	/*protected Session getSession() {
 		return em.unwrap(Session.class);
-	}
+	}*/
 
 }
