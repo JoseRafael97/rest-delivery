@@ -33,6 +33,7 @@ public class ImplProductDAO extends ImplGenericDAO<Product, Long> implements Pro
 	/*/**
 	 * Método filtra os produtos por meio de um FILTERPRODUCT criado, por ex. por nome.
 	 */
+	
 	public List<Product> filterProduct(FilterProducts filterProducts) {
 		CriteriaQuery<Product> criteriaQuery = createFilterToProduct(filterProducts);
 
@@ -40,7 +41,7 @@ public class ImplProductDAO extends ImplGenericDAO<Product, Long> implements Pro
 				.setMaxResults(filterProducts.getAmount());
 
 		return typedQuery.getResultList();
-	}*/
+	}
 
 	public int countProductFilters(FilterProducts filterProducts) {
 		CriteriaQuery<Product> criteriaQuery = createFilterToProduct(filterProducts);
