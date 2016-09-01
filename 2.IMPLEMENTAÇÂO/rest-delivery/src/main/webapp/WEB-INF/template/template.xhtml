@@ -14,25 +14,32 @@
 	<h:outputStylesheet name="imagestyle.css" library="css" />
 	<h:outputStylesheet name="background.css" library="css" />
 
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/bootstrap/css/bootstrap.min.css" />
+
+
+	<ui:insert name="css"></ui:insert>
 </h:head>
 
 <h:body>
 	<h:form>
 
+		<div align="center">
+			<p:ajaxStatus>
+				<f:facet name="start">
+					<p:graphicImage library="images" name="loading.gif"></p:graphicImage>
+				</f:facet>
 
-		<p:ajaxStatus styleClass="ajax-status">
-			<f:facet name="start">
-				<p:graphicImage library="images" name="loading.gif"></p:graphicImage>
-			</f:facet>
+				<f:facet name="complete">
+					<h:outputText value="" />
+				</f:facet>
+			</p:ajaxStatus>
+		</div>
 
-			<f:facet name="complete">
-				<h:outputText value="" />
-			</f:facet>
-		</p:ajaxStatus>
-
-		<div class="painelsuperior painelsuperior2">
+		<!-- <div class="painelsuperior painelsuperior2">
 
 			<div align="right">
+
 				<div class="labelcenter" align="center">
 
 
@@ -42,14 +49,55 @@
 
 					<div id="logout">
 						<p:splitButton value="#{authenticateBen.user.login}">
-							<p:menuitem value="Minha conta" />
+							<p:menuitem value="Minha conta"
+								outcome="/pages/employee/settings_count">
+								<f:param name="employeeLogado" value="#{authenticateBen.employee.id}"></f:param>
+							</p:menuitem>
 							<p:menuitem value="Sair" action="#{authenticateBen.logout()}" />
 						</p:splitButton>
 					</div>
 
 				</div>
 			</div>
-		</div>
+		</div> -->
+
+		<nav class="navbar navbar-default"
+			style="margin: 0; min-height: 10px; background-color: #4d4d4d; box-sizing: border-box;">
+			<div class="container-fluid">
+
+				<ul role="tablist" class="nav navbar-nav navbar-right nav nav-pills">
+
+
+
+					<!-- <li><div class="text-center " style="padding: 10px">
+							<ui:insert name="labelcenter">
+								<p:outputLabel value="teste" />
+							</ui:insert>
+
+
+						</div></li>
+
+
+
+ -->
+
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false" style="color:white!important;">#{authenticateBen.recoversUserName()}
+							<span class="caret"></span>
+					</a>
+
+						<ul class="dropdown-menu">
+							<li><p:link>Minha conta</p:link></li>
+							<li><p:commandLink action="#{authenticateBen.logout()}">Sair</p:commandLink></li>
+
+						</ul></li>
+
+				</ul>
+
+
+			</div>
+		</nav>
 
 		<nav class="menu" tabindex="0">
 			<div class="menufloat smartphone-menu-trigger">
@@ -60,8 +108,11 @@
 
 
 			<div class="avatar avatar2">
-				<p:graphicImage styleClass="img render" library="images"
-					name="novo.png" />
+				<p:panel
+					style="background: #910001;border:none; width:80%;height: 84%;">
+					<p:graphicImage styleClass="img render" library="images"
+						name="login.png" />
+				</p:panel>
 			</div>
 
 			<ul>
@@ -82,15 +133,17 @@
 
 	<div class="ui-fluid  helper">
 
-		<p:ajaxStatus styleClass="ajax-status">
-			<f:facet name="start">
-				<p:graphicImage library="images" name="loading.gif"></p:graphicImage>
-			</f:facet>
+		<div align="center" class="ajax-status-temp">
+			<p:ajaxStatus styleClass="ajax-status-temp">
+				<f:facet name="start">
+					<p:graphicImage library="images" name="loading.gif"></p:graphicImage>
+				</f:facet>
 
-			<f:facet name="complete">
-				<h:outputText value="" />
-			</f:facet>
-		</p:ajaxStatus>
+				<f:facet name="complete">
+					<h:outputText value="" />
+				</f:facet>
+			</p:ajaxStatus>
+		</div>
 
 
 		<ui:insert name="container">
@@ -99,6 +152,10 @@
 
 	</div>
 
+	<h:outputScript name="locale-primefaces" library="javascript"></h:outputScript>
+
+	<script type="text/javascript"
+		src="#{request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 
 </h:body>
 </html>
