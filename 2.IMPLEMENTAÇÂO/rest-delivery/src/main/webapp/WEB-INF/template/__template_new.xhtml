@@ -91,15 +91,15 @@
 
 				<ul class="sidebar-menu">
 					<c:if test="${authenticateBen.checkUserRoleEmployee() == '1'}">
-						<ui:include src="/WEB-INF/template/item_deliveryman.xhtml"></ui:include>
+						<ui:include src="/WEB-INF/template/_item_deliveryman.xhtml"></ui:include>
 					</c:if>
 
 					<c:if test="${authenticateBen.checkUserRoleEmployee() == '2'}">
-						<ui:include src="/WEB-INF/template/itens_operator.xhtml"></ui:include>
+						<ui:include src="/WEB-INF/template/_itens_operator.xhtml"></ui:include>
 					</c:if>
 
 					<c:if test="${authenticateBen.checkUserRoleEmployee() == '3'}">
-						<ui:include src="/WEB-INF/template/itens_admin.xhtml"></ui:include>
+						<ui:include src="/WEB-INF/template/_itens_admin.xhtml"></ui:include>
 					</c:if>
 
 
@@ -140,6 +140,6 @@
 		src="#{request.contextPath}/resources/javascript/theme/Director/app.js"
 		type="text/javascript"></script>
 
-	<h:outputScript name="locale-primefaces" library="javascript"></h:outputScript>
+	<h:outputScript name="locale-primefaces.js" library="javascript"></h:outputScript>
 </h:body>
 </html>

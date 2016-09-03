@@ -25,12 +25,13 @@
 			<to-view-id>FileUploadAck.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
+
 
 	<!-- <factory>
 		<exception-handler-factory>
-			br.edu.ifpb.restdelivery.util.jsf.JsfExceptionHandlerFactory</exception-handler-factory>
+			br.edu.ifpb.restdelivery.util.jsf.JsfExceptionHandlerFactory
+		</exception-handler-factory>
 
-	</factory> 
- -->
+	</factory> -->
+
 </faces-config>
