@@ -19,7 +19,7 @@ import br.edu.ifpb.restdelivery.util.filters.FilterProducts;
  */
 public interface ProductDAO extends GenericDAO<Product, Long>{
 	
-/**
+	/**
 	 * Filtra produtos por numero de registro requisitado e nome.
 	 * @param filterProducts - filtros para produto, ex: filtra 40 primeiros em ordem crescente por id.
 	 * @return Lista de produtos
@@ -74,6 +74,5 @@ public interface ProductDAO extends GenericDAO<Product, Long>{
 	 * @return
 	 */
 	public Map<String, BigDecimal> createMap();
-	
 
 }
