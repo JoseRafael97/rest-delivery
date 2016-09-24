@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/template/__template_new.xhtml"
+	xmlns:o="http://omnifaces.org/ui">
+
+	<f:metadata>
+		<o:viewParam name="menu" value="#{menuBean.menu}"
+			converter="#{menuConverter}" />
+		<f:event listener="#{menuBean.preRenderView()}" type="preRenderView" />
+	</f:metadata>
+
+
+	<h:head>
+		<ui:define name="title">Cardápio</ui:define>
+	</h:head>
+	<ui:define name="css2">
+		<h:outputStylesheet name="alternative3.css" library="css">
+		</h:outputStylesheet>
+
+		<h:outputStylesheet name="buttonStyle.css" library="css" />
+
+	</ui:define>
+	<ui:define name="title">cardápio</ui:define>
+
+
+	<ui:define name="container">
+
+
+		<p:messages id="mensages" showDetail="true" showSummary="true"
+			autoUpdate="true" />
+
+
+		<h:form id="form">
+			<p:breadCrumb>
+				<p:menuitem value="Dashboard"
+					outcome="main_page_emp?faces-redirect=true" style="color: #222;" />
+
+				<p:menuitem value="Cardápios" outcome="menu?faces-redirect=true"
+					style="color: #222;" />
+				<p:menuitem
+					value="#{menuBean.menu.id == null ? 'Novo cardápio' : 'Atualizar cardápio'}"
+					outcome="new_menu?faces-redirect=true" style="color: #222;" />
+
+
+			</p:breadCrumb>
+
+		</h:form>
+
+
+
+		<div class="ui-fluid ">
+
+			<h:form>
+				<p:panelGrid columns="1" layout="grid"
+					style="width:100%;background:white" styleClass="ui-panelgrid-blank">
+
+					<p:outputLabel style="font-size: 1.3em;"
+						value="Adicionar Item no Cardápio" />
+
+
+					<p:panelGrid columns="2"
+						columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid"
+						style="width:70%">
+
+
+						<p:outputLabel for="txtPreco" value="Preço R$"></p:outputLabel>
+						<p:inputText id="txtPreco" value="#{menuBean.item.price}">
+							<f:convertNumber maxFractionDigits="2" />
+						</p:inputText>
+
+						<p:outputLabel for="listItens" value="Produto" />
+						<p:selectOneMenu id="listItens" effect="fade"
+							value="#{menuBean.item.product}" converter="#{productConverter}"
+							filter="true" filterMatchMode="startsWith">
+
+							<f:selectItem itemLabel="Selecione um Item" />
+							<f:selectItems id="listPro" value="#{listProductBean.products}"
+								var="product" itemLabel="#{product.name}" itemValue="#{product}" />
+
+						</p:selectOneMenu>
+
+					</p:panelGrid>
+
+					<p:toolbar
+						style="background:white;border: 1px solid #ffffff !important;
+    border-top: 2.8px solid #d9d9d9 !important;">
+
+						<f:facet name="left">
+
+							<p:commandButton value="Adicionar" style="width:120px;"
+								action="#{menuBean.addItemMenu()}" update=":formMenu:listMenu"
+								resetValues="true">
+
+								<p:collector unique="true" value="#{menuBean.item}"
+									addTo="#{menuBean.menu.menuItens}" />
+
+							</p:commandButton>
+						</f:facet>
+
+					</p:toolbar>
+				</p:panelGrid>
+			</h:form>
+			<h:form id="formMenu">
+				<p:panelGrid columns="1" layout="grid"
+					style="width:100%;background:white">
+
+					<p:outputLabel style="font-size: 1.3em;"
+						value="#{menuBean.menu.id == null ? 'Criar novo cardápio' : 'Atualizar cardápio'}" />
+
+
+					<p:panelGrid id="panel" columns="2"
+						columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid"
+						style="width:70%" styleClass="ui-panelgrid-blank">
+
+
+						<p:outputLabel for="txtName" value="Nome" id="labelName" />
+						<p:inputText id="txtName" value="#{menuBean.menu.name}" />
+
+						<p:outputLabel for="txtDate" id="lbdescription" value="Data" />
+						<p:calendar style="color:black!important;backgroud:#910001!important" id="txtDate" value="#{menuBean.menu.date}"
+							locale="pt_BR" showButtonPanel="true" navigator="true"
+							pattern="dd/MM/yyyy" mask="true" mindate="#{menuBean.minDate}">
+
+						</p:calendar>
+
+
+						<p:outputLabel for="listMenu" value="Todos os Itens" />
+
+						<p:dataTable id="listMenu" value="#{menuBean.menu.menuItens}"
+							var="item" emptyMessage="Nenhum item adicionado" editable="true">
+
+							<p:ajax event="rowEdit" listener="#{menuBean.onRowEdit}" />
+							<p:ajax event="rowEditCancel" listener="#{menuBean.onRowCancel}" />
+
+
+							<f:facet name="header">
+           						Itens do Cardápio
+      					  	</f:facet>
+
+							<p:column width="60%">
+								<h:outputText value="#{item.product.name}" />
+							</p:column>
+
+							<p:column width="20%">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{item.price}" />
+									</f:facet>
+
+									<f:facet name="input">
+										<p:inputText id="editPrice" value="#{item.price}">
+											<f:convertNumber maxFractionDigits="2" />
+										</p:inputText>
+									</f:facet>
+
+								</p:cellEditor>
+							</p:column>
+
+							<p:column width="10%">
+								<p:rowEditor />
+							</p:column>
+
+							<p:column width="10%">
+								<p:commandButton title="excluír" id="btExcluir" process="@this"
+									style="alignment-adjust: central;color:black !important ;float:center;width:24px; height: 24px;background:white !important;"
+									icon="fa fa-times" update=":form"
+									action="#{menuBean.removeItem(item)}">
+
+									<p:confirm header="Confirmar"
+										message="Deseja realmente excluir #{item.product.name} da lista?"
+										icon="fa fa-exclamation-triangle" />
+								</p:commandButton>
+							</p:column>
+
+
+
+						</p:dataTable>
+
+
+						<p:outputLabel for="sw" value="Ativar menu" />
+						<p:inputSwitch id="sw" value="#{menuBean.menu.ativo}">
+						</p:inputSwitch>
+
+					</p:panelGrid>
+
+
+					<p:toolbar
+						style="background:white;border: 1px solid #ffffff !important;
+    border-top: 2.8px solid #d9d9d9 !important;">
+
+						<f:facet name="left">
+
+							<p:commandButton title="Cadastrar/atualizar"
+								value="#{menuBean.menu.id == null ? 'Cadastrar' : 'Atualizar'}"
+								action="#{menuBean.save()}" style="width:120px"
+								resetValues="true" />
+
+							<p:button value="Cancelar" outcome="menu?faces-redirect=true"
+								style="width:120px"></p:button>
+						</f:facet>
+
+					</p:toolbar>
+				</p:panelGrid>
+			</h:form>
+
+		</div>
+
+		<h:form id="dialog">
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+				widgetVar="dlg" header="Values">
+				<p:commandButton value="Sim" update=":form" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

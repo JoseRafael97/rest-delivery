@@ -13,22 +13,18 @@
 	<link rel="stylesheet" type="text/css"
 		href="#{request.contextPath}/resources/bootstrap/css/bootstrap.min.css" />
 
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/pace-1.0.2/themes/red/pace-theme-barber-shop.css" />
+
 	<ui:insert name="header"></ui:insert>
+
 
 </h:head>
 
 <h:body>
 	<h:form id="form-menu-superior">
 
-		<p:ajaxStatus styleClass="ajax-status">
-			<f:facet name="start">
-				<p:graphicImage library="images" name="loading.gif"
-					styleClass="img-logo"></p:graphicImage>
-			</f:facet>
-			<f:facet name="complete">
-				<h:outputText value="" />
-			</f:facet>
-		</p:ajaxStatus>
+
 
 		<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
 			<div class="container">
@@ -55,8 +51,10 @@
 
 
 
-						<li><p:link outcome="main_page?faces-redirect=true">HOME</p:link></li>
-						<li><p:link outcome="menu_user?faces-redirect=true">CARDÁPIO
+						<li><p:link
+								outcome="/pages/customer/main_page?faces-redirect=true">HOME</p:link></li>
+						<li><p:link
+								outcome="/pages/customer/menu_user?faces-redirect=true">CARDÁPIO
 						</p:link></li>
 						<li><p:link>SOBRE</p:link></li>
 
@@ -68,13 +66,15 @@
 						</a>
 
 							<ul class="dropdown-menu">
-								<li><p:link outcome="settings_count_user?faces-redirect=true">Minha conta</p:link></li>
+								<li><p:link
+										outcome="/pages/customer/settings_count_user?faces-redirect=true">Minha conta</p:link></li>
 								<li><p:commandLink action="#{authenticateBen.logout()}">Sair</p:commandLink></li>
 
 							</ul></li>
 
 						<li role="presentation" id="finalize"><p:link
-								id="p-link-cart" outcome="finally_order?faces-redirect=true">
+								id="p-link-cart"
+								outcome="/pages/customer/finally_order?faces-redirect=true">
 								<p:graphicImage name="cart.png" library="images"
 									styleClass=".img-menu-cart" />
 								<span class="badge">#{customerKartBean.numberItens()}</span>
@@ -91,20 +91,24 @@
 
 	<p:panel styleClass="width:100%;background: #eeeeec;border:none">
 
-		<p:ajaxStatus styleClass="ajax-status">
-			<f:facet name="start">
-				<p:graphicImage library="images" name="loading.gif"></p:graphicImage>
-			</f:facet>
+		<p:ajaxStatus onstart="Pace.start()" onsuccess="Pace.stop()" />
 
-			<f:facet name="complete">
-				<h:outputText value="" />
-			</f:facet>
-		</p:ajaxStatus>
+		<!-- <p:dialog draggable="false" header="Basic Dialog" id="dialog2"
+					widgetVar="dlg-loading" closable="false" responsive="true"
+					showHeader="false" resizable="false"
+					style="margin:0px!important;background: rgb(0, 0, 0) transparent;
+						background: rgba(255, 255, 255, 0.0);border-color:white; border: none;text-align:center; box-shadow:none ">
+
+					<p:graphicImage library="images" name="loading.gif"
+						style="padding:0px;"></p:graphicImage>
+				</p:dialog> -->
+
 
 		<ui:insert name="container"></ui:insert>
 	</p:panel>
 
-
+	<script src="#{request.contextPath}/resources/pace-1.0.2/pace.js"
+		type="text/javascript"></script>
 
 	<script type="text/javascript"
 		src="#{request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>

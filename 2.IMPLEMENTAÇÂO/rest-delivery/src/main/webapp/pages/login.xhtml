@@ -9,11 +9,11 @@
 <h:head>
 	<title>RestDelivery-Login</title>
 	<h:outputStylesheet name="loginStyle.css" library="css" />
+	
 </h:head>
 
 <h:body>
-	<p:growl id="mensages" autoUpdate="true"
-		showSummary="true" />
+	<p:growl id="mensages" autoUpdate="true" showSummary="true" />
 
 	<p:ajaxStatus styleClass="ajax-status">
 		<f:facet name="start">
@@ -29,8 +29,8 @@
 
 		<h:form id="formLogin" prependId="false"
 			onsubmit="action='j_security_check';">
-			
-			
+
+
 
 			<p:ajaxStatus styleClass="ajax-status">
 				<f:facet name="start">
@@ -42,24 +42,24 @@
 				</f:facet>
 			</p:ajaxStatus>
 
-			<p:panelGrid columns="1" layout="grid" columnClasses="column" style="border:none" 	styleClass="ui-panelgrid-blank ceil-panel-grid">
-				
+			<p:panelGrid columns="1" layout="grid" 
+				style="border:none" styleClass="ui-panelgrid-blank">
+
 				<p:panel style="margin:0;width:100%">
-					<p:graphicImage library="images" style="width:100%;margin-left:5.5%"
+					<p:graphicImage library="images"
+						style="width:100%;margin-left:1%; padding-top:5px;"
 						name="login.png" />
 
 				</p:panel>
 
-				<p:inputText id="j_username" placeholder="username" required="true" requiredMessage="Username requerido"/>
+				<p:inputText id="j_username" placeholder="username" required="true"
+					requiredMessage="Username requerido" />
 
-				<p:password id="j_password" placeholder="***********" required="true" requiredMessage="Senha requerida"/>
+				<p:password id="j_password" placeholder="***********"
+					required="true" requiredMessage="Senha requerida" />
 
 				<p:commandButton id="btnLogin" value="Entrar" ajax="false"
-					style="background:#F2BC31!important;" >
-
-					<f:param name="login" value="#{userBean.login}" />
-
-				</p:commandButton>
+					style="background:#F2BC31!important;padding:0.8px!important;" />
 
 
 				<p:panelGrid columns="1" layout="grid" columnClasses="column">

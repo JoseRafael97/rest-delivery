@@ -27,11 +27,10 @@
 	</navigation-rule>
 
 
-	<!-- <factory>
+	<factory>
 		<exception-handler-factory>
-			br.edu.ifpb.restdelivery.util.jsf.JsfExceptionHandlerFactory
-		</exception-handler-factory>
+			br.edu.ifpb.restdelivery.util.jsf.JsfExceptionHandlerFactory</exception-handler-factory>
 
-	</factory> -->
+	</factory>
 
 </faces-config>

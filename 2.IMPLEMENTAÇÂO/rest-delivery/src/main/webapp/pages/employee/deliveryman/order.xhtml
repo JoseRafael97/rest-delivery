@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/template/__template_new.xhtml">
+
+	<f:metadata>
+
+	</f:metadata>
+
+
+	<h:head>
+
+
+	</h:head>
+
+	<ui:define name="css">
+		<h:outputStylesheet name="alternative2.css" library="css" />
+	</ui:define>
+
+	<ui:define name="css2">
+		<h:outputStylesheet name="alternative3.css" library="css">
+		</h:outputStylesheet>
+	</ui:define>
+	<ui:define name="container">
+
+		<div class="ui-fluid">
+			<h:body>
+
+				<h:form id="form">
+					<p:messages id="mensages2" autoUpdate="true" showDetail="true"
+						showSummary="true" />
+
+					<p:breadCrumb>
+						<p:menuitem value="Dashboard"
+							outcome="/pages/employee/main_page_emp?faces-redirect=true"
+							style="color: #222;" />
+							
+							<p:menuitem value="Pedidos"
+							outcome="/pages/employee/deliveryman/order?faces-redirect=true"
+							style="color: #222;" />
+
+
+					</p:breadCrumb>
+
+					<div class="ui-fluid" align="center">
+
+
+						<p:dataTable id="tabOrder" var="order"
+							emptyMessage="Nao existe dados correspondentes."
+							value="#{listOrderBean.orders}" editable="true"
+							style="margin-bottom:40px; width:100%;" paginator="true"
+							paginatorPosition="bottom" rows="20" reflow="true" widgetVar="od">
+
+							<p:ajax event="rowEdit" listener="#{listOrderBean.onRowEdit}"
+								update=":form:mensages2" />
+							<p:ajax event="rowEditCancel"
+								listener="#{listOrderBean.onRowCancel}" update=":form:mensages2" />
+
+
+							<f:facet name="header">
+
+								<div align="left">
+									<p:inputText id="globalFilter" onkeyup="PF('od').filter()"
+										style="width:20%;" placeholder="Digite para Buscar" />
+
+
+								</div>
+							</f:facet>
+
+							
+							<p:column filterStyle="display:none;" filterBy="#{order.id}"
+								headerText="Id" width="6%">
+								<h:outputText value="#{order.id}" />
+							</p:column>
+
+							<p:column filterStyle="display:none;"
+								filterBy="#{order.totalprice}" headerText="Cliente" width="20%">
+								<h:outputText value="#{order.customer.name}" />
+							</p:column>
+
+							<p:column filterStyle="display:none;" filterBy="#{order.data}"
+								headerText="Data" width="15%">
+
+								<h:outputText value="#{order.data}">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+								</h:outputText>
+							</p:column>
+
+							<p:column filterStyle="display:none;"
+								filterBy="#{order.totalprice}" headerText="Preco Total"
+								width="19%">
+								<h:outputText value="R$ #{order.totalprice}" />
+							</p:column>
+
+
+							<p:column filterStyle="display:none;"
+								filterBy="#{order.delivery.state}" headerText="Situação"
+								width="10%">
+
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText
+											styleClass="#{order.delivery.state == true ? 'label label-success' : 'label label-warning'}"
+											value="#{order.delivery.state == true ? 'Finalizado' : 'Em Andamento'}" />
+									</f:facet>
+									<f:facet name="input">
+										<p:selectOneMenu value="#{order.delivery.state}">
+											<f:selectItem itemValue="true" itemLabel="Finalizado" />
+											<f:selectItem itemValue="false" itemLabel="Em Andamento" />
+
+										</p:selectOneMenu>
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+
+							<p:column width="5%">
+								<p:button title="detalhes" icon="fa fa-info-circle"
+									style="width:24px; background:#5cb85c!important;height: 24px"
+									outcome="/pages/employee/deliveryman/order_detail.xhml">
+
+									<f:param name="order" value="#{order.id}" />
+
+								</p:button>
+
+							</p:column>
+							<p:column width="10%"
+								rendered="#{authenticateBen.iCheckUserDeliveryMan()}">
+								<p:rowEditor
+									rendered="#{authenticateBen.iCheckUserDeliveryMan()}" />
+							</p:column>
+
+
+
+						</p:dataTable>
+					</div>
+				</h:form>
+
+			</h:body>
+		</div>
+	</ui:define>
+</ui:composition>

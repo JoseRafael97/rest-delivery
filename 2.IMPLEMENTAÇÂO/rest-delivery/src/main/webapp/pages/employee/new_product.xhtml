@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/template/__template_new.xhtml"
+	xmlns:o="http://omnifaces.org/ui">
+
+	<f:metadata>
+		<o:viewParam name="product" value="#{productBean.product}"
+			converter="#{productConverter}" />
+
+		<f:event listener="#{productBean.init()}" type="preRenderView"></f:event>
+	</f:metadata>
+
+
+	<h:head>
+		<ui:define name="title">Products</ui:define>
+		<h:outputStylesheet name="buttonStyle.css" library="css" />
+
+	</h:head>
+
+
+	<ui:define name="title">Item de menu</ui:define>
+
+	<ui:define name="css">
+		<h:outputStylesheet name="alternative3.css" library="css">
+		</h:outputStylesheet>
+	</ui:define>
+	<ui:define name="container">
+
+		<h:form id="registerProduct">
+			<p:messages id="messages" showDetail="true" autoUpdate="true" />
+
+
+			<p:breadCrumb>
+
+				<p:menuitem value="Dashboard"
+					outcome="/pages/employee/main_page_emp" style="color: #222;" />
+
+				<p:menuitem value="Itens de cardápio"
+					outcome="/pages/employee/product" style="color: #222;" />
+
+				<p:menuitem value="#{productBean.product.id == null ? 'Novo Item de cardápio' : 'Atualizar item de cardápio'}"
+					outcome="/pages/employee/new_product" style="color: #222;" />
+
+
+			</p:breadCrumb>
+
+
+			<div class="ui-fluid">
+
+				<p:panelGrid id="registerProduct" columns="1" layout="grid">
+					
+					<p:panelGrid id="registerProducts" columns="2"
+						columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid"
+						style="width:70%" styleClass="ui-panelgrid-blank">
+
+						<p:outputLabel for="txtName" value="Nome" id="labelName" />
+						<p:inputText required="true" id="txtName"
+							value="#{productBean.product.name}" />
+
+						<p:outputLabel for="txtdesc" id="lbdescription" value="Descrição" />
+						<p:inputTextarea id="txtdesc"
+							value="#{productBean.product.description}" />
+
+						<p:outputLabel for="txtInformationNu" id="lbInfoNutri"
+							value="Info. Nutricional" />
+						<p:inputTextarea id="txtInformationNu"
+							value="#{productBean.product.nutricionInformations}" />
+
+						<p:outputLabel for="txtwg" id="lbwg" value="Peso em (g)" />
+						<p:inputNumber id="txtwg" value="#{productBean.product.weight}">
+							<f:convertNumber maxFractionDigits="3" />
+						</p:inputNumber>
+
+						<p:outputLabel value="Image Item"></p:outputLabel>
+						<p:fileUpload fileUploadListener="#{productBean.handleFileUpload}"
+							mode="advanced" dragDropSupport="false" update="messages"
+							sizeLimit="1000000" fileLimit="3"
+							allowTypes="/(\.|\/)(gif|jpe?g|png)$/" required="true" />
+
+
+						<p:outputLabel for="listcat" value="Categoria " />
+						<p:selectOneMenu required="true"
+							requiredMessage="Selecione uma categoria" id="listcat"
+							effect="fade" value="#{productBean.product.category}">
+							<f:selectItem itemLabel="Selecione uma Categoria" itemValue="" />
+
+							<f:selectItems id="listcatego" value="#{productBean.categories}"
+								var="category" itemLabel="#{category.nome}"
+								itemValue="#{category}" />
+
+						</p:selectOneMenu>
+
+						<br />
+
+					</p:panelGrid>
+				</p:panelGrid>
+			</div>
+
+			<p:toolbar
+				style="background:white;border: 1px solid #ffffff !important;
+    border-top: 2.8px solid #d9d9d9 !important;">
+
+				<f:facet name="left">
+
+					<p:commandButton value="#{productBean.product.id == null ? 'Cadastrar' : 'Atualizar'}" action="#{productBean.save()}"
+						update="registerProducts">
+					</p:commandButton>
+
+					<p:button value="Cancelar" outcome="product?faces-redirect=true"></p:button>
+
+				</f:facet>
+
+			</p:toolbar>
+
+
+
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

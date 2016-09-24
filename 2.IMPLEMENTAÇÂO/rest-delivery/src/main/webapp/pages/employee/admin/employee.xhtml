@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/template/__template_new.xhtml">
+
+	<f:metadata>
+
+	</f:metadata>
+
+
+	<h:head>
+
+
+	</h:head>
+
+	<ui:define name="css">
+		<h:outputStylesheet name="alternative2.css" library="css" />
+	</ui:define>
+
+	<ui:define name="css2">
+		<h:outputStylesheet name="alternative3.css" library="css">
+		</h:outputStylesheet>
+	</ui:define>
+
+	<ui:define name="labelcenter">Funcionários</ui:define>
+
+
+	<ui:define name="title">Funcionários</ui:define>>
+	
+
+	<ui:define name="container">
+		<div class="ui-fluid">
+			<h:body>
+				<p:messages id="mensages" showDetail="true" showSummary="true"
+					autoUpdate="true" />
+				<h:form id="form">
+
+					<p:breadCrumb>
+						<p:menuitem value="Dashboard"
+							outcome="/pages/employee/main_page_emp"
+							style="color: #222!important" />
+
+						<p:menuitem value="Funcionários"
+							outcome="/pages/employee/admin/employee"
+							style="color:#222!important" />
+
+
+
+					</p:breadCrumb>
+
+
+					<div align="center">
+
+
+						<p:dataTable id="tabEmployee" var="employee"
+							emptyMessage="Nao existe dados correspondentes."
+							value="#{listEmployee.employees}"
+							style="width:100%;text-align:left" widgetVar="prod"
+							paginator="true" paginatorPosition="bottom" rows="20"
+							reflow="true">
+
+
+
+							<f:facet name="header">
+
+								<div align="left">
+									<p:inputText id="globalFilter" onkeyup="PF('prod').filter()"
+										style="width:20%;;" placeholder="Digite para Buscar" />
+
+									<p:button icon="fa fa-plus" value="novo"
+										style="display:inline; width:80px;float:right;"
+										outcome="new_employee?faces-redirect=true"></p:button>
+
+								</div>
+							</f:facet>
+
+
+							<p:column filterStyle="display:none;" headerText="Id"
+								width="1.6%" filterBy="#{employee.id}">
+								<h:outputText value="#{employee.id}" />
+							</p:column>
+
+
+							<p:column filterStyle="display:none;" filterBy="#{employee.name}"
+								headerText="Nome" width="7%">
+								<h:outputText value="#{employee.name}" />
+							</p:column>
+
+							<p:column filterStyle="display:none;"
+								filterBy="#{employee.user.login}" width="5%" headerText="User">
+								<h:outputText value="#{employee.user.login}" />
+							</p:column>
+
+							<p:column filterStyle="display:none;"
+								filterBy="#{employee.user.email}" width="7%" headerText="E-mail">
+								<h:outputText value="#{employee.user.email}" />
+							</p:column>
+
+							<p:column filterStyle="display:none;"
+								filterBy="#{employee.user.grupo.name()}" width="4%"
+								headerText="Grupo">
+								<h:outputText
+									value="#{employee.user.grupo.name().toLowerCase()}"
+									styleClass="#{employee.user.grupo.valor eq 'ADMIN' ? 'label label-danger' : employee.user.grupo.valor eq 'OPERADOR' ? 'label label-primary' : 'label label-info'}" />
+							</p:column>
+
+
+
+
+							<p:column width="3.8%">
+
+								<p:panelGrid columns="3" layout="grid"
+									styleClass="ui-panelgrid-blank">
+
+
+									<p:button title="detalhes" icon="fa fa-info-circle"
+										style="width:24px; height: 24px; background:#5cb85c!important"
+										outcome="/pages/employee/admin/employee_detail.xhml">
+
+										<f:param name="emp" value="#{employee.id}" />
+
+									</p:button>
+
+									<p:button title="editar" id="btEdit" icon="fa fa-pencil"
+										outcome="new_employee?faces-redirect=true"
+										style="width:24px; height: 24px;background:#f0ad4e!important">
+
+										<f:param name="employee" value="#{employee.id}" />
+										<f:param name="addressemp" value="#{employee.address.id}" />
+
+
+									</p:button>
+
+
+
+									<p:commandButton title="excluír" id="btExcluir"
+										icon="fa fa-trash" action="#{listEmployee.remove(employee)}"
+										process="@form"
+										style="width:24px; ;height: 24px;alignment-adjust: central">
+
+										<p:confirm header="Confirmar"
+											message="Deseja realmente excluir #{employee.name}?"
+											icon="fa fa-exclamation-triangle" />
+
+									</p:commandButton>
+
+
+
+
+								</p:panelGrid>
+							</p:column>
+
+
+						</p:dataTable>
+
+					</div>
+
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+						widgetVar="dlg" header="Values">
+
+						<p:commandButton value="Sim" styleClass="ui-confirmdialog-yes"
+							icon="ui-icon-check" update=":form:tabEmployee" />
+
+						<p:commandButton value="Não" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+
+
+
+
+				</h:form>
+
+
+
+			</h:body>
+		</div>
+	</ui:define>
+</ui:composition>

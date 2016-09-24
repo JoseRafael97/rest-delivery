@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/template/__template_new.xhtml">
+
+	<f:metadata>
+
+	</f:metadata>
+
+
+	<h:head>
+
+
+	</h:head>
+
+	<ui:define name="css">
+		<h:outputStylesheet name="alternative2.css" library="css" />
+		<h:outputStylesheet name="buttonStyle.css" library="css" />
+
+	</ui:define>
+
+	<ui:define name="css2">
+		<h:outputStylesheet name="alternative3.css" library="css">
+		</h:outputStylesheet>
+	</ui:define>
+
+	<ui:define name="title">cardápios</ui:define>>
+	
+	<ui:define name="labelcenter">Cardápios</ui:define>
+
+	<ui:define name="container">
+
+		<div class="ui-fluid">
+			<h:body>
+				<p:messages id="mensages" showDetail="true" showSummary="true"
+					autoUpdate="true" />
+
+				<h:form id="form">
+
+					<p:breadCrumb>
+
+						<p:menuitem value="Dashboard"
+							outcome="main_page_emp?faces-redirect=true" style="color: #222;" />
+
+						<p:menuitem value="Cardápios" outcome="menu?faces-redirect=true"
+							style="color: #222;" />
+
+					</p:breadCrumb>
+
+
+
+					<div align="center">
+						<p:dataTable id="tabMenu" var="menu"
+							emptyMessage="Nao existe dados correspondentes."
+							value="#{listMenuBean.menus}" editable="true"
+							style="margin-bottom:40px; width:100%;" paginator="true"
+							paginatorPosition="bottom" rows="20" reflow="true" widgetVar="me"
+							sortBy="#{menu.id}">
+
+
+							<f:facet name="header">
+
+								<div align="left">
+									<p:inputText id="globalFilter" onkeyup="PF('me').filter()"
+										style="width:20%;;" placeholder="Digite para Buscar" />
+
+									<p:button icon="fa fa-plus" value="novo"
+										style="display:inline; width:80px;float:right"
+										outcome="new_menu?faces-redirect=true"></p:button>
+
+								</div>
+							</f:facet>
+
+							<p:column filterBy="#{menu.id}" filterStyle="display:none;"
+								headerText="Id" width="8%">
+								<h:outputText value="#{menu.id}" />
+							</p:column>
+
+							<p:column filterBy="#{menu.name}" filterStyle="display:none;"
+								headerText="Nome" width="35%">
+								<h:outputText value="#{menu.name}" />
+							</p:column>
+
+							<p:column headerText="Data" width="20%">
+								<h:outputText value="#{menu.date}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="Situação" width="14%">
+								<h:outputText
+									value="#{menu.ativo == true ? 'Ativo' : 'Desativado'}"
+									styleClass="#{menu.ativo == true ? 'label label-success' : 'label label-danger'}">
+								</h:outputText>
+							</p:column>
+
+
+							<p:column width="12%">
+								<p:panelGrid columns="3" styleClass="ui-panelgrid-blank">
+
+									<p:button title="detalhes" icon="fa fa-info-circle"
+										style="width:24px;background:#5cb85c!important; height: 24px"
+										outcome="/pages/employee/menu_detail.xhml">
+
+										<f:param name="menu2" value="#{menu.id}" />
+
+									</p:button>
+
+									<p:button title="editar" id="btEdit"
+										style="width:24px; background:#f0ad4e!important;height: 24px"
+										icon="fa fa-pencil" outcome="new_menu?faces-redirect=true">
+										<f:param name="menu" value="#{menu.id}" />
+									</p:button>
+
+									<p:commandButton title="excluír" id="btExcluir" process="@this"
+										style="width:24px; height: 24px;display:inline;"
+										action="#{listMenuBean.remove()}" icon="fa fa-trash"
+										update="tabMenu">
+
+										<f:setPropertyActionListener value="#{menu}"
+											target="#{listMenuBean.menu}" />
+										<p:resetInput target="tabMenu" />
+
+										<p:confirm header="Confirmar"
+											message="Deseja realmente excluir #{menu.name}?"
+											icon="ui-icon-alert" />
+									</p:commandButton>
+
+								</p:panelGrid>
+							</p:column>
+
+						</p:dataTable>
+					</div>
+
+				</h:form>
+
+				<h:form id="dialog">
+
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+						widgetVar="dlg" header="Values">
+						<p:commandButton value="Sim" update="form" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="Não" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close"
+							update="tabMenu" />
+					</p:confirmDialog>
+
+				</h:form>
+			</h:body>
+		</div>
+	</ui:define>
+</ui:composition>

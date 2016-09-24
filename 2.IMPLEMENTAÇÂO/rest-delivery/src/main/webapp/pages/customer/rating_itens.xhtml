@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/template/__template_user.xhtml"
+	xmlns:o="http://omnifaces.org/ui">
+
+	<f:metadata>
+
+		<o:viewParam name="orderrating" converter="#{orderConverter}"
+			value="#{ratingOrdeBean.order}" />
+
+		<f:event listener="#{ratingOrdeBean.preRenderView()}"
+			type="preRenderView"></f:event>
+	</f:metadata>
+
+
+	<h:head>
+
+
+
+	</h:head>
+
+	<ui:define name="labelcenter">Meus pedidos</ui:define>
+
+
+	<ui:define name="title">Meus pedidos</ui:define>>
+	
+
+	<ui:define name="container">
+
+		<h:body>
+
+			<h:form id="form">
+				<p:messages id="msgs" showDetail="true" autoUpdate="true" />
+
+				<div class="ui-fluid">
+
+					<p:panelGrid layout="grid" columns="1">
+						<p:outputLabel value="Avaliação do Pedido" style="font-size:2em"></p:outputLabel>
+
+						<p:outputLabel value="Classificação"></p:outputLabel>
+						<p:rating value="#{ratingOrdeBean.ratingOrder.number}"></p:rating>
+
+						<p:outputLabel value="Comentario"></p:outputLabel>
+						<p:inputTextarea value="#{ratingOrdeBean.ratingOrder.comments}"
+							placeholder="Comente sobre sua experiência de compra conosco."></p:inputTextarea>
+
+						<p:spacer></p:spacer>
+
+					</p:panelGrid>
+
+
+
+					<p:dataTable id="subTab"
+						value="#{ratingOrdeBean.order.itemProducts}" editable="true"
+						var="itemProduct" style="padding-bottom:3px">
+
+						<f:facet name="header">
+           						Avaliação Dos itens do pedido
+      					  	</f:facet>
+
+						<p:column headerText="Nome" width="90%">
+							<h:outputText value="#{itemProduct.itemMenu.product.name}" />
+						</p:column>
+
+						<p:column filterStyle="display:none;"
+							filterBy="#{order.delivery.state}" width="10%">
+
+							<p:commandButton icon="fa fa-star" value="Avaliar"
+								oncomplete="PF('dlg').show(); return false" update=":dialog">
+
+								<f:setPropertyActionListener
+									value="#{itemProduct.itemMenu.product}"
+									target="#{ratingOrdeBean.ratingProduct.product}" />
+
+							</p:commandButton>
+
+						</p:column>
+
+
+					</p:dataTable>
+					
+
+					<p:toolbar style="background:white">
+
+						<f:facet name="left">
+
+							<p:commandButton value="Registrar"
+								action="#{ratingOrdeBean.save()}" style="width:120px;">
+							</p:commandButton>
+
+							<p:button value="cancelar" style="width:120px;" outcome="/pages/customer/settings_count_user"></p:button>
+
+						</f:facet>
+
+					</p:toolbar>
+
+				</div>
+
+			</h:form>
+
+			<h:form id="dialog">
+
+				<script>
+					function validateDialog(args){
+						if(!args.validationFailed){
+							PF('dlg').hide();
+
+						}
+					}
+				</script>
+
+				<p:dialog id="dialog" modal="true" header="Avaliação do item"
+					widgetVar="dlg" width="360" height="250" resizable="false"
+					closable="true" responsive="true"
+					style="background:white !important;">
+
+					<div class="ui-fluid">
+
+						<p:panelGrid columns="1" style="width:100%" layout="grid">
+
+							<p:outputLabel
+								value="#{ratingOrdeBean.ratingProduct.product.name}"
+								style="font-size:1.2em"></p:outputLabel>
+
+
+							<p:outputLabel value="Classificação"></p:outputLabel>
+
+							<p:rating id="number_item"
+								value="#{ratingOrdeBean.ratingProduct.number}" required="true"
+								requiredMessage="Informe o numero de estrelas">
+
+							</p:rating>
+
+							<p:outputLabel value="Comentario"></p:outputLabel>
+
+							<p:inputTextarea value="#{ratingOrdeBean.ratingProduct.comment}"
+								placeholder="Comente sobre o item comprado.">
+							</p:inputTextarea>
+
+							<p:commandButton value="Adicionar"
+								action="#{ratingOrdeBean.saveRatingProduct()}"
+								oncomplete="validateDialog(args)">
+
+								<p:collector unique="false"
+									value="#{ratingOrdeBean.ratingProduct}"
+									addTo="#{ratingOrdeBean.ratingProduct.product.ratingProducts}" />
+
+							</p:commandButton>
+
+
+						</p:panelGrid>
+
+
+					</div>
+				</p:dialog>
+
+
+			</h:form>
+
+
+		</h:body>
+	</ui:define>
+</ui:composition>

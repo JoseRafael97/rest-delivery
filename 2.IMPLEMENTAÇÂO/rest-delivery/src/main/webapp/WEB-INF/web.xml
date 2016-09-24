@@ -81,6 +81,11 @@
 		<location>/erro403.xhtml</location>
 	</error-page>
 
+	<error-page>
+		<error-code>404</error-code>
+		<location>/erro404.xhtml</location>
+	</error-page>
+
 	<!-- configuração Login -->
 	<login-config>
 		<!-- NONE, BASIC, DIGEST, FORM, or CLIENT-CERT Referência: https://docs.oracle.com/javaee/7/tutorial/security-webtier002.htm#JEETT01227 -->
@@ -88,7 +93,7 @@
 		<realm-name>restDeliveryJdbcRealm</realm-name>
 		<form-login-config>
 			<form-login-page>/pages/login.xhtml</form-login-page>
-			<form-error-page>/pages/login.xhtml</form-error-page>
+			<form-error-page>/login_erro.xhtml</form-error-page>
 
 		</form-login-config>
 	</login-config>
@@ -157,7 +162,7 @@
 		<web-resource-collection>
 			<web-resource-name>Área não particular do cliente</web-resource-name>
 			<description />
-			<url-pattern>/pages/user/*</url-pattern>
+			<url-pattern>/pages/customer/*</url-pattern>
 			<http-method>GET</http-method>
 			<http-method>POST</http-method>
 			<http-method>HEAD</http-method>
@@ -178,8 +183,7 @@
 	<!-- Acesso Somente para entregadores e administradores -->
 	<security-constraint>
 		<display-name>Acesso permitido somente para Entregadores e
-			Administradores
-		</display-name>
+			Administradores</display-name>
 		<web-resource-collection>
 			<web-resource-name>Área não particular do entregador</web-resource-name>
 			<description />

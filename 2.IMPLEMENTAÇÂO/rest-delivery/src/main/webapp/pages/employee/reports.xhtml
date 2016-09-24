@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/__template_new.xhtml">
+
+	<f:metadata>
+
+	</f:metadata>
+
+
+	<h:head>
+
+	</h:head>
+
+
+	<ui:define name="labelcenter">Relatórios</ui:define>
+
+	<ui:define name="title">Relatórios</ui:define>
+	<ui:define name="css2">
+		<h:outputStylesheet name="alternative3.css" library="css">
+		</h:outputStylesheet>
+	</ui:define>
+
+	<ui:define name="container">
+
+
+		<h:body>
+			<p:growl id="mensages" autoUpdate="true" showDetail="true"
+				showSummary="true" />
+
+			<h:form>
+
+				<p:growl id="msgs" showDetail="true" />
+
+				<div class="ui-fluid" align="center">
+
+					<p:breadCrumb>
+						<p:menuitem value="Dashboard"
+							outcome="/pages/employee/main_page_emp?faces-redirect=true"
+							style="color: #222;" />
+
+
+					</p:breadCrumb>
+
+
+					<p:panelGrid layout="grid" columns="1">
+
+						<p:panel>
+							<p:chart type="line" model="#{graphLineBean.lineModel1}" minY="0"
+								legendPosition="e" responsive="true" />
+
+
+						</p:panel>
+
+
+						<p:panelGrid layout="grid" columns="2">
+
+							<p:panel>
+
+								<p:chart type="pie" model="#{graphPieBean.pieModel2}" minY="0"
+									legendPosition="e" responsive="true" />
+
+
+
+
+							</p:panel>
+
+
+							<p:panel>
+
+								<p:chart type="pie" model="#{graphPieBean.pieModel1}" minY="0"
+									legendPosition="e" responsive="true" />
+
+
+
+
+							</p:panel>
+
+
+						</p:panelGrid>
+					</p:panelGrid>
+				</div>
+			</h:form>
+		</h:body>
+
+	</ui:define>
+</ui:composition>

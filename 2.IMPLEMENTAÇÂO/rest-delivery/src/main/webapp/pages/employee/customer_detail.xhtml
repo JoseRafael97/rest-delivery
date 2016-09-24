@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/template/__template_new.xhtml"
+	xmlns:o="http://omnifaces.org/ui">
+
+
+	<f:metadata>
+
+		<o:viewParam name="cust" value="#{customerBean.customer}"
+			converter="#{customerConverter}" />
+
+
+	</f:metadata>
+
+
+	<h:head>
+
+
+	</h:head>
+
+
+	<ui:define name="css2">
+		<h:outputStylesheet name="alternative3.css" library="css">
+		</h:outputStylesheet>
+
+		<h:outputStylesheet name="buttonStyle.css" library="css" />
+	</ui:define>
+
+	<ui:define name="title">Detalhes cliente</ui:define>
+
+
+	<ui:define name="container">
+		<div class="ui-fluid">
+			<h:body>
+				<p:growl id="mensages" autoUpdate="true" showDetail="true"
+					showSummary="true" />
+				<h:form id="form">
+					<p:growl id="msgs" showDetail="true" />
+
+					<p:breadCrumb>
+						<p:menuitem value="Dashboard"
+							outcome="main_page_emp?faces-redirect=true" />
+
+
+						<p:menuitem value="Clientes"
+							outcome="/pages/employee/custome?faces-redirect=true"
+							style="color: #222;" />
+
+						<p:menuitem value="Detalhes cliente"
+							outcome="/pages/employee/customer_detail?faces-redirect=true"
+							style="color: #222;" />
+
+
+					</p:breadCrumb>
+
+					<div align="center" class="ui-fluid  newpro">
+
+
+						<div align="left" class="ui-fluid">
+
+							<p:panelGrid columns="1" layout="grid"
+								style="width:100%;background:white !important"
+								styleClass="ui-panelgrid-blank">
+
+								<p:outputLabel style="font-size: 1.6em;"
+									value="Informações do Cliente" />
+
+								<p:panelGrid columns="2" layout="grid"
+									columnClasses="ui-grid-col-2,ui-grid-col-10" style="width:100%">
+
+
+									<p:outputLabel value="Nome" />
+									<p:outputLabel id="outName"
+										value="#{customerBean.customer.name}"
+										style="color:black !important" />
+
+									<p:outputLabel value="Sexo" />
+									<p:outputLabel id="outSexo"
+										value="#{customerBean.customer.sexo ==  'M' ? 'Masculino' : 'Feminino'}" />
+
+									<p:outputLabel value="CPF" />
+									<p:outputLabel id="outCpf" value="#{customerBean.customer.cpf}" />
+
+
+								</p:panelGrid>
+								<p:separator />
+
+								<p:panelGrid columns="2" layout="grid"
+									columnClasses="ui-grid-col-2,ui-grid-col-10" style="width:100%">
+
+
+									<p:outputLabel value="Nome de Usuário" />
+									<p:outputLabel id="outUsername"
+										value="#{customerBean.customer.user.login}" />
+
+
+									<p:outputLabel value="E-mail" />
+									<p:outputLabel id="outEmail"
+										value="#{customerBean.customer.user.email}" />
+
+								</p:panelGrid>
+
+								<p:separator style="padding:0px" />
+
+								<p:panelGrid columns="2" layout="grid"
+									columnClasses="ui-grid-col-2,ui-grid-col-10" style="width:100%">
+
+									<p:outputLabel value="Rua" />
+									<p:outputLabel id="outRua"
+										value="#{customerBean.customer.address.street}" />
+
+									<p:outputLabel value="Bairro" />
+									<p:outputLabel id="outBairro"
+										value="#{customerBean.customer.address.neighborhood}" />
+
+									<p:outputLabel value="Cep" />
+									<p:outputLabel id="outCep"
+										value="#{customerBean.customer.address.zipCode}" />
+
+									<p:outputLabel value="Complemento"
+										rendered="#{customerBean.customer.address.complement.length() > 0}" />
+									<p:outputLabel id="outComp"
+										value="#{customerBean.customer.address.complement}"
+										rendered="#{customerBean.customer.address.complement.length() > 0}" />
+
+
+									<p:outputLabel value="Nº" />
+									<p:outputLabel id="outNumber"
+										value="#{customerBean.customer.address.number}" />
+
+									<p:outputLabel value="Cidade" />
+									<p:outputLabel id="outCity"
+										value="#{customerBean.customer.address.city}" />
+
+									<p:outputLabel value="Estado" />
+									<p:outputLabel id="outState"
+										value="#{customerBean.customer.address.state}" />
+								</p:panelGrid>
+							</p:panelGrid>
+
+							<p:toolbar
+								style="background:white;border: 1px solid #ffffff !important;
+    border-top: 2.8px solid #d9d9d9 !important;">
+
+								<f:facet name="left">
+
+									<p:button value="Voltar"
+										outcome="/pages/employee/custome?faces-redirect=true"
+										style="width:120px" />
+
+
+								</f:facet>
+
+							</p:toolbar>
+						</div>
+					</div>
+				</h:form>
+
+
+			</h:body>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/template/__template_new.xhtml"
+	xmlns:o="http://omnifaces.org/ui">
+
+
+	<f:metadata>
+		<f:event listener="#{orderBean.init()}" type="preRenderView"></f:event>
+
+		<o:viewParam name="order" value="#{orderBean.order}"
+			converter="#{orderConverter}" />
+
+	</f:metadata>
+
+
+	<h:head>
+
+
+	</h:head>
+
+
+	<ui:define name="css2">
+		<h:outputStylesheet name="alternative3.css" library="css">
+		</h:outputStylesheet>
+
+		<h:outputStylesheet name="buttonStyle.css" library="css" />
+	</ui:define>
+
+	<ui:define name="title">Detalhes do pedido</ui:define>
+
+
+	<ui:define name="container">
+		<div class="ui-fluid">
+			<h:body>
+				<p:growl id="mensages" autoUpdate="true" showDetail="true"
+					showSummary="true" />
+				<h:form id="form">
+					<p:growl id="msgs" showDetail="true" />
+
+					<p:breadCrumb>
+
+						<p:menuitem value="Dashboard"
+							outcome="/pages/employee/main_page_emp?faces-redirect=true"
+							style="color: #222;" />
+
+						<p:menuitem value="Pedidos"
+							outcome="/pages/employee/deliveryman/order?faces-redirect=true"
+							style="color: #222;" />
+
+						<p:menuitem value="Detalhes do pedido"
+							outcome="/pages/employee/deliveryman/order_detail?faces-redirect=true"
+							style="color: #222;" />
+
+
+					</p:breadCrumb>
+
+					<div align="center" class="ui-fluid  newpro">
+
+
+						<div align="left" class="ui-fluid">
+
+							<p:panelGrid columns="1" layout="grid"
+								style="width:100%;background:white !important"
+								styleClass="ui-panelgrid-blank">
+
+								<p:outputLabel style="font-size: 1.6em;"
+									value="Informações do pedido" />
+
+								<p:panelGrid columns="2" layout="grid"
+									columnClasses="ui-grid-col-2,ui-grid-col-10" style="width:100%">
+
+
+									<p:outputLabel value="Nome do cliente" />
+									<p:outputLabel id="outName"
+										value="#{orderBean.order.customer.name}"
+										/>
+
+									<p:outputLabel value="Data do pedido" />
+									<p:outputLabel id="ouDateOrder" value="#{orderBean.order.data}">
+										<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+									</p:outputLabel>
+
+									<p:outputLabel value="Situação" />
+									<p:outputLabel id="outSituation"
+										value="#{orderBean.order.delivery.state ==  false ? 'Em andamento' : 'Finalizada'}" />
+
+									<p:outputLabel value="Data Entrega" />
+									<p:outputLabel id="outDateDelivery"
+										value="#{orderBean.order.delivery.state ==  true ? orderBean.order.delivery.date : 'Ainda não foi entregue'}">
+										<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+
+									</p:outputLabel>
+
+									<p:outputLabel value="Avaliação" />
+									<p:outputLabel id="outRating"
+										value="#{orderBean.order.ratingOrder ==  null ? 'Pedido ainda não avaliado' : orderBean.order.ratingOrder.number}">
+									</p:outputLabel>
+
+								</p:panelGrid>
+								<p:separator />
+								<p:panelGrid columns="2" layout="grid"
+									columnClasses="ui-grid-col-2,ui-grid-col-10" style="width:100%">
+
+
+									<p:outputLabel value="Rua" />
+									<p:outputLabel id="outStreet"
+										value="#{orderBean.order.delivery.address.street}"
+										style="color:black !important" />
+
+									<p:outputLabel value="Bairro" />
+									<p:outputLabel id="outNei"
+										value="#{orderBean.order.delivery.address.neighborhood}">
+										<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+									</p:outputLabel>
+
+									<p:outputLabel value="Nº" />
+									<p:outputLabel id="outNumber"
+										value="#{orderBean.order.delivery.address.number}" />
+
+									<p:outputLabel value="CEP" />
+									<p:outputLabel id="outCep"
+										value="#{orderBean.order.delivery.address.zipCode}" />
+
+									<p:outputLabel value="Cidade" />
+									<p:outputLabel id="outCity"
+										value="#{orderBean.order.delivery.address.city}" />
+
+									<p:outputLabel value="Estado" />
+									<p:outputLabel id="outState"
+										value="#{orderBean.order.delivery.address.state}" />
+
+								</p:panelGrid>
+								<p:separator></p:separator>
+
+								<p:outputLabel style="font-size: 1.1em;"
+									value="Todos os itens do Pedido" />
+							</p:panelGrid>
+
+							<p:dataTable id="itensMenu"
+								value="#{orderBean.order.itemProducts}" var="itemProduct"
+								reflow="true">
+
+								<p:column headerText="Id" width="5%">
+
+									<h:outputText value="#{itemProduct.id}" />
+
+								</p:column>
+
+								<p:column headerText="Nome" width="30%">
+									<p:link outcome="/pages/employee/product_detail">
+										<h:outputText value="#{itemProduct.itemMenu.product.name}" />
+										<f:param name="product"
+											value="#{itemProduct.itemMenu.product.id}"></f:param>
+									</p:link>
+								</p:column>
+
+								<p:column headerText="Categoria" width="20%">
+									<h:outputText id="txtAum"
+										value="#{itemProduct.itemMenu.product.category.nome}" />
+								</p:column>
+
+
+								<p:column headerText="Quant." width="25%">
+									<h:outputText id="txtAum" value="#{itemProduct.amount}" />
+								</p:column>
+
+								<p:column headerText="Preço" width="25%">
+									<h:outputText id="txtPrice" value="R$ #{itemProduct.price}" />
+								</p:column>
+
+
+							</p:dataTable>
+
+							<p:toolbar style="background:white;">
+
+								<f:facet name="left">
+
+									<p:button value="Voltar"
+										outcome="/pages/employee/deliveryman/order?faces-redirect=true"
+										style="width:120px" />
+
+
+								</f:facet>
+
+							</p:toolbar>
+						</div>
+					</div>
+				</h:form>
+
+
+			</h:body>
+		</div>
+	</ui:define>
+</ui:composition>

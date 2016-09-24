@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/__template_new.xhtml"
+	xmlns:o="http://omnifaces.org/ui">
+
+
+	<f:metadata>
+
+		<o:viewParam name="employeeLogado" value="#{employeeBean.employee}"
+			converter="#{employeeConverter}" />
+
+		<f:event listener="#{employeeBean.init()}" type="preRenderView"></f:event>
+
+	</f:metadata>
+
+
+	<h:head>
+
+	</h:head>
+
+
+
+	<ui:define name="css">
+		<h:outputStylesheet name="alternative3.css" library="css">
+		</h:outputStylesheet>
+	</ui:define>
+
+
+
+	<ui:define name="labelcenter">Relatórios</ui:define>
+
+	<ui:define name="title">Relatórios</ui:define>
+
+
+	<ui:define name="container">
+
+
+		<h:body>
+			<p:messages id="mensages" autoUpdate="true" showDetail="true"
+				showSummary="true" />
+
+			<h:form id="form">
+
+				<p:breadCrumb>
+					<p:menuitem value="Dashboard"
+						outcome="/pages/employee/main_page_emp?faces-redirect=true"
+						style="color: #222;" />
+
+					<p:menuitem value="Minha conta"
+						outcome="/pages/employee/deliveryman/settings_count?faces-redirect=true"
+						style="color: #222;" />
+
+
+				</p:breadCrumb>
+
+				<div class="ui-fluid" align="left">
+
+					<p:panelGrid columns="1" layout="grid" style="width:100%;margin:0;">
+
+
+						<p:panelGrid columns="1" layout="grid"
+							style="width:100%;background:white !important"
+							styleClass="ui-panelgrid-blank">
+
+							<p:outputLabel style="font-size: 1.6em;" value="Suas Informações" />
+
+							<p:panelGrid columns="2" layout="grid"
+								columnClasses="ui-grid-col-2,ui-grid-col-10" style="width:100%">
+
+
+								<p:outputLabel value="Nome" />
+								<p:outputLabel id="outName"
+									value="#{authenticateBen.employee.name}"
+									style="color:black !important" />
+
+								<p:outputLabel value="Sexo" />
+								<p:outputLabel id="outSexo"
+									value="#{authenticateBen.employee.sexo ==  'M' ? 'Masculino' : 'Feminino'}" />
+
+								<p:outputLabel value="CPF" />
+								<p:outputLabel id="outCpf"
+									value="#{authenticateBen.employee.cpf}" />
+
+								<p:outputLabel value="RG" />
+								<p:outputLabel id="outRg" value="#{authenticateBen.employee.rg}" />
+
+								<p:outputLabel value="CTPS" />
+								<p:outputLabel id="outCtps"
+									value="#{authenticateBen.employee.ctps}" />
+
+							</p:panelGrid>
+							<p:separator />
+
+							<p:panelGrid columns="2" layout="grid"
+								columnClasses="ui-grid-col-2,ui-grid-col-10" style="width:100%">
+
+
+								<p:outputLabel value="Nome de Usuário" />
+								<p:outputLabel id="outUsername"
+									value="#{authenticateBen.employee.user.login}" />
+
+
+								<p:outputLabel value="E-mail" />
+								<p:outputLabel id="outEmail"
+									value="#{authenticateBen.employee.user.email}" />
+
+								<p:outputLabel value="Telefone" />
+								<p:outputLabel id="outTelefone"
+									value="#{authenticateBen.employee.tellphone}" />
+							</p:panelGrid>
+
+							<p:separator style="padding:0px" />
+
+							<p:panelGrid columns="2" layout="grid"
+								columnClasses="ui-grid-col-2,ui-grid-col-10" style="width:100%"
+								styleClass="ui-panelgrid-blank">
+
+								<p:outputLabel value="Rua" />
+								<p:outputLabel id="outRua"
+									value="#{authenticateBen.employee.address.street}" />
+
+								<p:outputLabel value="Bairro" />
+								<p:outputLabel id="outBairro"
+									value="#{authenticateBen.employee.address.neighborhood}" />
+
+								<p:outputLabel value="Cep" />
+								<p:outputLabel id="outCep"
+									value="#{authenticateBen.employee.address.zipCode}" />
+
+								<p:outputLabel value="Complemento" />
+								<p:outputLabel id="outComp"
+									value="#{authenticateBen.employee.address.complement}" />
+
+
+								<p:outputLabel value="Nª" />
+								<p:outputLabel id="outNumber"
+									value="#{authenticateBen.employee.address.number}" />
+
+								<p:outputLabel value="Cidade" />
+								<p:outputLabel id="outCity"
+									value="#{authenticateBen.employee.address.city}" />
+
+								<p:outputLabel value="Estado" />
+								<p:outputLabel id="outState"
+									value="#{authenticateBen.employee.address.state}" />
+							</p:panelGrid>
+						</p:panelGrid>
+
+					</p:panelGrid>
+
+					<p:toolbar style="background:white; border: 1px solid #ffffff !important;
+    border-top: 2.8px solid #d9d9d9 !important;">
+
+						<f:facet name="left">
+
+							<div align="left">
+								<p:commandButton value="Alterar" style="width:120px"
+									oncomplete="PF('dlg').show(); return false" update=":dialog" >
+
+								</p:commandButton>
+
+								<p:button value="Voltar" style="width:100px"
+									href="/pages/employee/main_page_emp.xhtml" />
+
+							</div>
+						</f:facet>
+
+					</p:toolbar>
+
+				</div>
+			</h:form>
+
+			<h:form id="dialog" >
+				<script>
+					function validateDialog(args){
+						if(!args.validationFailed){
+							PF('dlg').hide();
+
+						}
+					}
+				</script>
+
+				<p:dialog id="dialog" modal="true" header="Alterar Conta"
+					widgetVar="dlg" width="450" height="250" resizable="false"
+					closable="true" responsive="true"
+					style="background:white !important;">
+					
+					<p:messages id="mensages" autoUpdate="true" showDetail="true"
+						showSummary="true" />
+						
+					<div align="left" class="ui-fluid">
+
+						<p:panelGrid columns="2" layout="grid"
+							styleClass="ui-panelgrid-blank">
+
+							<p:outputLabel for="email" value="E-mail"></p:outputLabel>
+							<p:inputText id="email"
+								value="#{authenticateBen.employee.user.email}" required="true"></p:inputText>
+
+
+							<p:outputLabel for="user" value="Username"></p:outputLabel>
+							<p:inputText required="true" id="user"
+								value="#{authenticateBen.employee.user.login}"></p:inputText>
+
+							<p:outputLabel for="passwordActualy" value="Senha atual"></p:outputLabel>
+							<p:password required="true" id="passwordActualy"
+								value="#{userBean.actuallyPassword}"></p:password>
+
+							<p:outputLabel for="passwordNew" value="Nova senha"></p:outputLabel>
+							<p:password required="true" id="passwordNew"
+								value="#{userBean.newPassword}"
+								feedback="true" match="password2" goodLabel="Bom" label=""
+								weakLabel="Razoável" promptLabel="Fraco" strongLabel="Ótimo"></p:password>
+
+							<p:outputLabel for="password2" value="Confirme a senha"></p:outputLabel>
+							<p:password required="true" id="password2"
+								value="#{userBean.newPassword}"></p:password>
+
+						</p:panelGrid>
+						<p:toolbar style="background:white;">
+
+							<f:facet name="left">
+
+								<div align="left">
+									<p:commandButton value="Atualizar"
+										action="#{userBean.updateUser()}" style="width:130px"
+										oncomplete="validateDialog(args)">
+
+										<f:setPropertyActionListener
+											value="#{authenticateBen.employee.user}"
+											target="#{userBean.user}" />
+
+									</p:commandButton>
+								</div>
+							</f:facet>
+
+						</p:toolbar>
+					</div>
+				</p:dialog>
+
+			</h:form>
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>

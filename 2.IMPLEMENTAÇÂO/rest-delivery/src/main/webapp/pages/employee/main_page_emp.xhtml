@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/__template_new.xhtml"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<f:metadata>
+
+	</f:metadata>
+
+
+	<h:head>
+
+	</h:head>
+
+
+	<ui:define name="labelcenter">Dashboard</ui:define>
+
+	<ui:define name="title">Dashboard</ui:define>
+
+
+	<ui:define name="container">
+
+
+		<h:body>
+
+			<h:form>
+				<p:messages id="mensages" showDetail="true" showSummary="true"
+					autoUpdate="true" />
+
+				<div class="ui-fluid" align="center">
+
+					<p:panelGrid columns="4" style="width:100%;background:f0f3f4"
+						layout="grid" styleClass="ui-panelgrid-blank">
+
+						<p:panelGrid columns="2" layout="grid"
+							style="background:white;border-bottom: 5px solid #F2BC31;border-radius: 3px;
+						;box-shadow: 0 1px 3px #4d4d4d;">
+
+							<p:panelGrid columns="1" layout="grid"
+								styleClass="ui-panelgrid-blank">
+								<i class="fa fa-users fa-5x" style="color: #F2BC31"
+									aria-hidden="true"></i>
+							</p:panelGrid>
+
+							<p:panelGrid columns="1" layout="grid"
+								styleClass="ui-panelgrid-blank">
+								<p:outputLabel value="CLIENTES  "
+									style="font-size:1em;color: #F2BC31"></p:outputLabel>
+								<p:outputLabel value="#{customerBean.numberItens}"
+									style="font-size:2.5em;color: #F2BC31"></p:outputLabel>
+
+							</p:panelGrid>
+
+						</p:panelGrid>
+
+
+						<p:panelGrid columns="2" layout="grid"
+							style="background:white ;border-bottom: 5px solid #008000;border-radius: 3px;
+						;box-shadow: 0 1px 3px #4d4d4d;"
+							styleClass="ui-panelgrid-blank">
+
+							<p:panelGrid columns="1" layout="grid"
+								styleClass="ui-panelgrid-blank">
+								<i class="fa fa-line-chart fa-5x" style="color: #008000;"
+									aria-hidden="true"></i>
+							</p:panelGrid>
+
+							<p:panelGrid columns="1" layout="grid"
+								styleClass="ui-panelgrid-blank">
+								<p:outputLabel value="PEDIDOS"
+									style="font-size:1em;color: #008000"></p:outputLabel>
+								<p:outputLabel value="#{orderBean.numberItens}"
+									style="font-size:2.5em; color: #008000;"></p:outputLabel>
+
+							</p:panelGrid>
+						</p:panelGrid>
+
+						<p:panelGrid columns="2" layout="grid"
+							style="background:white ;border-bottom: 5px solid #696969; border-radius: 3px;
+						;box-shadow: 0 1px 3px #4d4d4d;">
+
+							<p:panelGrid columns="1" layout="grid"
+								styleClass="ui-panelgrid-blank">
+								<i class="fa fa-comments fa-5x" style="color: #696969;"
+									aria-hidden="true"></i>
+
+							</p:panelGrid>
+
+							<p:panelGrid columns="1" layout="grid"
+								styleClass="ui-panelgrid-blank">
+								<p:outputLabel value="AVALIAÇÕES"
+									style="font-size:1em;color: #696969"></p:outputLabel>
+								<p:outputLabel value="#{orderBean.numberItensRating}"
+									style="font-size:2.5em;color: #696969;"></p:outputLabel>
+
+							</p:panelGrid>
+						</p:panelGrid>
+
+						<p:panelGrid columns="2" layout="grid"
+							style="background:white;border-bottom: 5px solid #A52A2A ;border-radius: 3px;
+						;box-shadow: 0 1px 3px #4d4d4d;">
+
+							<p:panelGrid columns="1" layout="grid"
+								styleClass="ui-panelgrid-blank">
+								<i class="fa fa-shopping-basket fa-5x" style="color: #A52A2A;"
+									aria-hidden="true"></i>
+
+							</p:panelGrid>
+
+							<p:panelGrid columns="1" layout="grid"
+								styleClass="ui-panelgrid-blank">
+								<p:outputLabel value="ITENS"
+									style="font-size:1em;color: #A52A2A"></p:outputLabel>
+								<p:outputLabel value="#{productBean.numberItens}"
+									style="font-size:2.5em;color: #A52A2A"></p:outputLabel>
+
+							</p:panelGrid>
+						</p:panelGrid>
+					</p:panelGrid>
+
+
+					<p:panelGrid layout="grid" columns="1"
+						styleClass="ui-panelgrid-blank"
+						style="width:100%;background:f0f3f4">
+
+						<p:panel>
+
+							<p:chart type="line" model="#{graphLineBean.lineModel2}" minY="0"
+								legendPosition="e" responsive="true">
+							</p:chart>
+
+
+						</p:panel>
+
+						<p:panel>
+
+							<p:chart type="line" model="#{graphLineBean.lineModel3}" minY="0"
+								legendPosition="e" responsive="true">
+							</p:chart>
+						</p:panel>
+
+
+						<p:panelGrid layout="grid" columns="2"
+							styleClass="ui-panelgrid-blank"
+							style="width:100%;background:f0f3f4">
+
+							<p:panel>
+								<p:chart type="line" model="#{graphLineBean.lineModel1}"
+									minY="0" legendPosition="e" responsive="true">
+
+
+								</p:chart>
+
+							</p:panel>
+
+							<p:panel>
+								<p:outputLabel value="Últimos comentários"></p:outputLabel>
+								<p:dataGrid value="#{orderBean.orders}" var="orderRating"
+									styleClass="ui-datagrid-blank" columns="1"
+									style="border:white!important;margin:0;padding:0">
+
+									<ul id="comments-list" class="comments-list">
+
+										<li>
+
+											<div class="comment-box">
+												<div
+													class="comment-head #{orderRating.ratingOrder.number > 3 ? 'alert alert-success' : 'alert alert-warning'}">
+													<h6 class="comment-name by-author">
+														<a>#{orderRating.customer.name}</a>
+
+													</h6>
+													<span>#{orderRating.data}</span>
+												</div>
+												<div class="comment-content">#{orderRating.ratingOrder.comments}</div>
+											</div>
+
+										</li>
+									</ul>
+
+								</p:dataGrid>
+							</p:panel>
+						</p:panelGrid>
+						<p:panelGrid layout="grid" columns="2"
+							styleClass="ui-panelgrid-blank"
+							style="width:100%;background:f0f3f4">
+
+							<p:panel>
+
+								<pe:gChart height="300" value="#{graphPieBean.chart2}"
+									title="Vendas dos itens por categoria">
+								</pe:gChart >
+
+
+							</p:panel>
+
+							<p:panel>
+								<pe:gChart height="300" value="#{graphPieBean.chart}"
+									title="Avalição dos itens por categoria">
+								</pe:gChart>
+
+
+
+							</p:panel>
+
+
+							<!-- <p:panel>
+								<p:chart type="bar" model="#{graphBarBean.barModel}"
+									responsive="true" />
+
+
+
+							</p:panel> -->
+
+							
+
+
+						</p:panelGrid>
+
+						<p:panel>
+							<pe:gChart height="300"  value="#{graphBarBean.chart}"
+								title="Relação novos clientes">
+							</pe:gChart>
+
+						</p:panel>
+
+
+					</p:panelGrid>
+				</div>
+			</h:form>
+		</h:body>
+
+	</ui:define>
+</ui:composition>

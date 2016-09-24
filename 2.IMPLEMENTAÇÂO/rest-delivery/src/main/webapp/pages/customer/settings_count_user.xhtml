@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/template/__template_user.xhtml">
+
+	<f:metadata>
+
+
+	</f:metadata>
+
+
+	<h:head>
+
+
+
+	</h:head>
+
+	<ui:define name="labelcenter">Meus pedidos</ui:define>
+
+
+	<ui:define name="title">Meus pedidos</ui:define>>
+	
+
+	<ui:define name="container">
+
+		<h:body>
+
+			<p:messages id="mensages1" autoUpdate="true" showDetail="true"
+				showSummary="true" />
+
+
+
+			<div align="center">
+
+				<p:panelGrid columns="1" layout="grid" style="width:100%;">
+
+					<p:tabView orientation="left">
+
+						<p:tab title="Seus Pedidos">
+							<h:form id="form">
+
+
+								<p:dataTable id="tabOrder" var="order"
+									emptyMessage="Nao existe dados correspondentes."
+									value="#{customerBean.listOrderCustomer()}" editable="true"
+									style="margin-bottom:40px;text-align: center;" widgetVar="od"
+									reflow="true">
+
+
+									<f:facet name="header">
+										Seus Pedidos
+									</f:facet>
+
+									<p:rowExpansion>
+										<p:dataTable id="subTab" value="#{order.itemProducts}"
+											editable="true" var="itemProduct">
+
+											<p:column headerText="Nome" width="140">
+												<h:outputText value="#{itemProduct.itemMenu.product.name}" />
+											</p:column>
+
+											<p:column headerText="Quant." width="160">
+												<h:outputText value="#{itemProduct.amount}" />
+											</p:column>
+
+											<p:column headerText="Preço" width="160">
+												<h:outputText value="R$ #{itemProduct.price}" />
+											</p:column>
+
+
+
+										</p:dataTable>
+									</p:rowExpansion>
+
+									<p:column style="width:4%">
+										<p:rowToggler />
+									</p:column>
+
+									<p:column filterStyle="display:none;" filterBy="#{order.data}"
+										headerText="Data" width="20%">
+
+										<p:outputLabel value="#{order.data}">
+											<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+										</p:outputLabel>
+
+									</p:column>
+
+									<p:column filterStyle="display:none;"
+										filterBy="#{order.totalprice}" headerText="Preco Total"
+										width="14%">
+
+										<p:outputLabel value="R$ #{order.totalprice}" />
+
+									</p:column>
+
+									<p:column filterStyle="display:none;"
+										filterBy="#{order.delivery.state}" headerText="Situação"
+										width="20%">
+
+										<p:outputLabel
+											value="#{order.delivery.state == true ? 'Finalizada' : 'Em Andamento'}" />
+
+									</p:column>
+
+									<p:column filterStyle="display:none;"
+										filterBy="#{order.delivery.state}" width="7%">
+
+										<p:button
+											disabled="#{order.ratingOrder != null || order.ratingOrder == null and !(order.delivery.state)}"
+											icon="fa fa-star" value="avaliar"
+											outcome="/pages/customer/rating_itens" style="width:80%">
+
+											<f:param name="orderrating" value="#{order.id}"></f:param>
+										</p:button>
+
+									</p:column>
+
+
+								</p:dataTable>
+							</h:form>
+						</p:tab>
+
+						<p:tab title="Alterar Conta">
+							<h:form id="form2">
+								<div align="left">
+									<p:tab title="Alterar Conta">
+										<div class="ui-fluid">
+											<p:panelGrid columns="2" layout="grid">
+
+												<p:outputLabel for="email" value="e-mail"></p:outputLabel>
+												<p:inputText id="email"
+													value="#{authenticateBen.customer.user.email}"
+													required="true"></p:inputText>
+
+
+												<p:outputLabel for="user" value="username"></p:outputLabel>
+												<p:inputText required="true" id="user"
+													value="#{authenticateBen.customer.user.login}"></p:inputText>
+
+												<p:outputLabel for="passwordActualy" value="Senha atual"></p:outputLabel>
+												<p:password required="true" id="passwordActualy"
+													value="#{userBean.actuallyPassword}"></p:password>
+
+												<p:outputLabel for="passwordNew" value="Nova senha"></p:outputLabel>
+												<p:password required="true" id="passwordNew"
+													value="#{userBean.newPassword}" feedback="true"
+													match="password2" goodLabel="Bom" label=""
+													weakLabel="Razoável" promptLabel="Fraco"
+													strongLabel="Ótimo"></p:password>
+
+												<p:outputLabel for="password2" value="Confirme a senha"></p:outputLabel>
+												<p:password required="true" id="password2"
+													value="#{userBean.newPassword}"></p:password>
+
+											</p:panelGrid>
+
+										</div>
+										<p:toolbar style="background:white">
+
+											<f:facet name="left">
+
+												<div align="left">
+													<p:commandButton value="Atualizar"
+														action="#{userBean.updateUser()}" style="width:100px">
+
+														<f:setPropertyActionListener
+															value="#{authenticateBen.customer.user}"
+															target="#{userBean.user}"></f:setPropertyActionListener>
+
+													</p:commandButton>
+
+												</div>
+											</f:facet>
+
+										</p:toolbar>
+
+									</p:tab>
+
+								</div>
+							</h:form>
+						</p:tab>
+						<p:tab title="Excluir Conta">
+							<h:form id="form3">
+								<h:panelGrid columns="2" cellpadding="10">
+									<p:commandButton value="Excluír Conta"
+										action="#{customerBean.remove(authenticateBen.customer)}">
+
+
+										<p:confirm header="Confirmar"
+											message="Deseja realmente excluir sua conta ? "
+											icon="fa fa-exclamation-triangle" />
+									</p:commandButton>
+								</h:panelGrid>
+							</h:form>
+						</p:tab>
+					</p:tabView>
+
+
+				</p:panelGrid>
+
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+					widgetVar="dlg" header="Values">
+
+					<p:commandButton value="Sim" styleClass="ui-confirmdialog-yes"
+						icon="ui-icon-check" />
+
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+
+			</div>
+
+
+		</h:body>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://java.sun.com/jsf/html">
+
+<ui:composition>
+
+	<li tabindex="0"><p:link
+			outcome="/pages/employee/main_page_emp" class="menu-itens">
+			<i class="fa fa-tachometer fa-lg icon" aria-hidden="true"></i>
+			<span>Dashboard</span>
+		</p:link></li>
+
+	<li tabindex="0"><p:link outcome="/pages/employee/custome" class="menu-itens">
+			<i class="fa fa-users fa-lg icon" aria-hidden="true"></i>
+			<span>Clientes</span>
+		</p:link></li>
+
+	<li tabindex="0"><p:link outcome="/pages/employee/menu" class="menu-itens">
+			<i class="fa fa-cutlery fa-lg icon" aria-hidden="true"></i>
+			<span>Cardapio</span>
+		</p:link></li>
+
+
+
+	<li tabindex="0"><p:link outcome="/pages/employee/deliveryman/order" class="menu-itens">
+			<i class="fa fa-tasks fa-lg icon" aria-hidden="true"></i>
+			<span>Pedidos</span>
+		</p:link></li>
+
+
+	<li tabindex="0"><p:link outcome="/pages/employee/product" class="menu-itens" >
+			<i class="fa fa-ticket fa-lg icon" aria-hidden="true"></i>
+			<span>Itens de Menu</span>
+		</p:link></li>
+
+
+
+</ui:composition>
+</html>

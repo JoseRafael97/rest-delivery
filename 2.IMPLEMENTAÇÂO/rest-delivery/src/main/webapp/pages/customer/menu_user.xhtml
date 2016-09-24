@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/template/__template_user.xhtml"
+	xmlns:o="http://omnifaces.org/ui">
+
+	<f:metadata>
+		<o:viewParam name="cat" value="#{menuUserBean.filter.category}" />
+	</f:metadata>
+
+	<ui:define name="header">
+		<h:outputStylesheet name="alternative.css" library="css" />
+	</ui:define>
+
+
+
+	<h:head>
+
+	</h:head>
+
+	<ui:define name="title">Cardapio</ui:define>
+
+
+	<ui:define name="container">
+		<h:body>
+
+
+
+			<p:messages autoUpdate="true" showSummary="true" showDetail="true"></p:messages>
+
+			<h:form id="form">
+
+				<div align="center" class="ui-fluid">
+					<p:dataGrid var="item" value="#{menuUserBean.model}" columns="6"
+						layout="grid" rows="32" paginator="true" id="menus"
+						paginatorPosition="bottom" lazy="true">
+
+						<f:facet name="header">
+
+							<div align="right">
+
+								<p:commandButton id="filteItemBtn" icon="fa fa-filter"
+									type="button" style="width:3%;;"
+									update="filterItens:panelPrice" />
+
+								<p:overlayPanel id="filterItens" for="filteItemBtn"
+									hideEffect="fade" style="width:21%" widgetVar="dlg-filter">
+
+									<div align="left">
+										<p:panelGrid layout="grid" columns="1"
+											styleClass="ui-panelgrid-blank">
+											<p:outputLabel value="Filtrar Itens" style="font-size:1.5em"></p:outputLabel>
+
+
+											<p:panelGrid layout="grid" id="panelPrice"
+												 columns="1">
+
+												<h:inputHidden id="pricemMin"
+													value="#{menuUserBean.priceMin}" />
+												<h:inputHidden id="priceMax"
+													value="#{menuUserBean.priceMax}" />
+
+												<h:outputText id="displayRange"
+													value="Preço entre #{menuUserBean.priceMin} R$ e #{menuUserBean.priceMax} R$" />
+
+												<p:slider for="pricemMin, priceMax" display="displayRange"
+													style="width: 100%" range="true"
+													displayTemplate="Preço entre {min} R$ e {max} R$" />
+
+
+												</p:panelGrid>
+
+												<p:panelGrid columns="2" layout="grid"
+													>
+													
+													<p:outputLabel value="Classificação" />
+
+													<p:rating value="#{menuUserBean.filter.rating}" />
+												</p:panelGrid>
+
+
+												<p:panelGrid layout="grid" columns="2">
+
+													<p:commandButton id="btnDlgFilter" value="Filtrar"
+														action="#{menuUserBean.setUpdate()}" process="@form"
+														update="menus filteItemBtn"
+														oncomplete="PF('dlg-filter').hide();" />
+
+													<p:commandButton id="btnFilter" value="Cancelar"
+														oncomplete="PF('dlg-filter').hide();" />
+
+												</p:panelGrid>
+											</p:panelGrid>
+									</div>
+								</p:overlayPanel>
+
+
+
+								<p:inputText id="globalFilter" style="width:15%;"
+									placeholder="Digite para Buscar"
+									value="#{menuUserBean.filter.name}">
+
+									<!-- 									<p:ajax event="change" process="@form"></p:ajax>
+ -->
+								</p:inputText>
+
+								<p:commandButton icon="fa fa-search"
+									style="display:inline; width:40px;" process="@form"
+									update="menus" />
+
+
+							</div>
+
+
+						</f:facet>
+
+
+
+						<p:panel style="text-align:center;">
+							<p:panelGrid layout="grid" columns="1" style="width:100%">
+
+								<p:graphicImage styleClass="img-menu" library="images"
+									name="#{item.product.pathFile}" />
+
+								<h:outputText value="#{item.product.name}" />
+
+								<p:panelGrid columns="2"
+									columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid"
+									styleClass="ui-panelgrid-blank" style="width:100%;padding:0px">
+
+									<p:outputLabel value="#{itemMenuBean.getAverageNumber(item)}.0"></p:outputLabel>
+
+									<p:rating value="#{itemMenuBean.getAverageNumber(item)}"
+										style="padding:0px;" readonly="true"></p:rating>
+								</p:panelGrid>
+
+								<h:outputText value=" R$ #{item.price}" />
+
+								<p:commandButton value="adicionar"
+									oncomplete="PF('dlg').show(); return false" update=":dialog">
+									<f:setPropertyActionListener value="#{item}"
+										target="#{customerKartBean.itemMenu}" />
+									<p:resetInput target="menus" />
+								</p:commandButton>
+
+
+								<p:button icon="fa fa-plus" value="detalhes"
+									outcome="/pages/customer/item_product_detail">
+
+									<f:param name="item_product" value="#{item.id}"></f:param>
+								</p:button>
+							</p:panelGrid>
+						</p:panel>
+
+					</p:dataGrid>
+				</div>
+
+			</h:form>
+
+			<h:form id="dialog">
+
+				<script>
+					function validateDialog(args){
+						if(!args.validationFailed){
+							PF('dlg').hide();
+
+						}
+					}
+				</script>
+
+				<p:dialog id="dialog" modal="true" header="Registrar Item"
+					widgetVar="dlg" width="300" height="200" resizable="false"
+					closable="true" responsive="true"
+					style="background:white !important;">
+
+					<div align="center" class="ui-fluid">
+
+						<p:panelGrid columns="2"
+							style="width:100% ;background:white !important;" layout="grid">
+
+							<h:outputText value="nome" />
+							<h:outputText id="name"
+								value="#{customerKartBean.itemMenu.product.name}" />
+
+							<h:outputText value="preço" />
+							<h:outputText value=" R$ #{customerKartBean.itemMenu.price}" />
+
+							<h:outputText value="quantidade" />
+							<p:spinner id="basic"
+								value="#{customerKartBean.itemProduct.amount}" size="10"
+								required="true" validatorMessage="Quantidade inválida">
+								<f:validateLongRange minimum="1"></f:validateLongRange>
+							</p:spinner>
+
+
+						</p:panelGrid>
+						<br />
+
+						<p:commandButton value="Confirmar"
+							action="#{customerKartBean.saveItemProduct()}"
+							oncomplete="validateDialog(args)" update=":form-menu-superior"></p:commandButton>
+
+					</div>
+				</p:dialog>
+
+
+			</h:form>
+
+
+		</h:body>
+	</ui:define>
+</ui:composition>

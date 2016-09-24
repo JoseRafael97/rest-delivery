@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/template/__template_user.xhtml">
+
+	<f:metadata>
+
+		<o:viewParam name="item_product" value="#{itemMenuBean.itemMenu}"
+			converter="#{itemMenuConverter}" />
+
+
+		<f:event listener="#{itemMenuBean.preRendererView()}"
+			type="preRenderView"></f:event>
+
+	</f:metadata>
+
+
+	<h:head>
+
+	</h:head>
+
+
+
+	<ui:define name="container">
+
+		<h:body>
+
+			<h:form id="form">
+
+				<p:messages id="growl" showDetail="true" autoUpdate="true" />
+
+
+				<div class="ui-fluid">
+
+
+
+					<p:panelGrid layout="grid" columns="2" style="margin:0 12%;">
+						<p:panel
+							style="padding:4px;padding-top:2px;height:100%!important;width:100%;background:white !important;">
+
+							<p:panelGrid layout="grid" columns="1"
+								style="margin:0;height:100%" styleClass="ui-panelgrid-blank">
+
+								<div align="right">
+									<p:graphicImage library="images" styleClass="img-menu-detail"
+										name="#{itemMenuBean.itemMenu.product.pathFile}" />
+								</div>
+
+							</p:panelGrid>
+						</p:panel>
+
+						<p:panelGrid columns="1" style="width:100%;" layout="grid">
+
+							<p:outputLabel value="#{itemMenuBean.itemMenu.product.name}"
+								style="font-size:2.1em"></p:outputLabel>
+
+							<p:outputLabel
+								value="#{itemMenuBean.itemMenu.product.description}"></p:outputLabel>
+
+							<p:panelGrid columns="2"
+								columnClasses="ui-grid-col-2,ui-grid-col-10"
+								style="width:44%;padding:0px" layout="grid"
+								styleClass="ui-panelgrid-blank">
+
+								<p:outputLabel style="padding:0px"
+									value="#{itemMenuBean.getAverageNumber(itemMenuBean.itemMenu)}.0"></p:outputLabel>
+
+								<p:rating
+									value="#{itemMenuBean.getAverageNumber(itemMenuBean.itemMenu)}"
+									style="padding:0px" readonly="true"></p:rating>
+							</p:panelGrid>
+
+							<p:panelGrid layout="grid" columns="2"
+								styleClass="ui-panelgrid-blank">
+
+
+								<p:panelGrid columns="1" layout="grid"
+									styleClass="ui-panelgrid-blank">
+									<p:outputLabel value="R$ #{itemMenuBean.itemMenu.price}"
+										style="font-size:2.2em; color:#910001!important"></p:outputLabel>
+									<p:outputLabel value="Pagamento via cartão de crédito"></p:outputLabel>
+								</p:panelGrid>
+
+								<p:panelGrid columns="1" layout="grid"
+									styleClass="ui-panelgrid-blank">
+
+									<p:commandButton value="Adicionar"
+										oncomplete="PF('dlg').show()" update=":dialog">
+										<f:setPropertyActionListener value="#{itemMenuBean.itemMenu}"
+											target="#{customerKartBean.itemMenu}" />
+
+									</p:commandButton>
+
+									<p:button value="Voltar" outcome="/pages/customer/menu_user" />
+								</p:panelGrid>
+
+							</p:panelGrid>
+
+
+						</p:panelGrid>
+
+					</p:panelGrid>
+
+					<p:panelGrid layout="grid" columns="1"
+						styleClass="ui-panelgrid-blank" style="margin:0 12%">
+
+						<p:outputLabel value="Informações Nutricionais"
+							style="font-size:1.4em"></p:outputLabel>
+						<p:outputLabel
+							value="#{itemMenuBean.itemMenu.product.nutricionInformations}"
+							style="font-size:1em"></p:outputLabel>
+
+
+						<p:outputLabel value="Comentários" style="font-size:1.4em"></p:outputLabel>
+
+
+						<p:dataGrid var="rt"
+							value="#{itemMenuBean.itemMenu.product.ratingProducts}"
+							style="width:100%;margin: 0 !important; border-color:white !important"
+							emptyMessage="Este item ainda foi avaliado." columns="1"
+							styleClass="ui-panelgrid-blank">
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<p:panelGrid columns="2"
+										columnClasses="ui-grid-col-2,ui-grid-col-10"
+										style="padding:0px; width:44%;background:#f5f5f5 !important;" layout="grid">
+										<p:outputLabel value="#{rt.userNameCustomer}"></p:outputLabel>
+										<p:rating value="#{rt.number.intValue()}"></p:rating>
+									</p:panelGrid>
+								</div>
+								<div class="panel-body">
+									<p:outputLabel value="#{rt.comment}"></p:outputLabel>
+								</div>
+							</div>
+
+
+
+						</p:dataGrid>
+
+					</p:panelGrid>
+				</div>
+			</h:form>
+
+			<h:form id="dialog">
+
+				<script>
+					function validateDialog(args){
+						if(!args.validationFailed){
+							PF('dlg').hide();
+
+						}
+					}
+				</script>
+
+				<p:dialog id="dialog" modal="true" header="Registrar Item"
+					widgetVar="dlg" width="300" height="200" resizable="false"
+					closable="true" responsive="true"
+					style="background:white !important;">
+
+					<div align="center" class="ui-fluid">
+
+						<p:panelGrid columns="2"
+							style="width:100% ;background:white !important;" layout="grid">
+
+							<h:outputText value="nome" />
+							<h:outputText id="name"
+								value="#{customerKartBean.itemMenu.product.name}" />
+
+							<h:outputText value="preço" />
+							<h:outputText value=" R$ #{customerKartBean.itemMenu.price}" />
+
+							<h:outputText value="quantidade" />
+							<p:spinner id="basic"
+								value="#{customerKartBean.itemProduct.amount}" size="10"
+								required="true" validatorMessage="Quantidade inválida">
+								<f:validateLongRange minimum="1"></f:validateLongRange>
+							</p:spinner>
+
+
+						</p:panelGrid>
+						<br />
+
+						<p:commandButton value="Adicionar"
+							action="#{customerKartBean.saveItemProduct()}"
+							oncomplete="validateDialog(args)" update=":form-menu-superior">
+
+						</p:commandButton>
+					</div>
+				</p:dialog>
+
+
+
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>

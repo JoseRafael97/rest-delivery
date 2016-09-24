@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/template/__template_new.xhtml"
+	xmlns:o="http://omnifaces.org/ui">
+
+
+	<f:metadata>
+		<f:event listener="#{menuBean.preRenderView()}" type="preRenderView"></f:event>
+
+		<o:viewParam name="menu2" value="#{menuBean.menu}"
+			converter="#{menuConverter}" />
+
+	</f:metadata>
+
+
+	<h:head>
+
+
+	</h:head>
+
+
+	<ui:define name="css2">
+		<h:outputStylesheet name="alternative3.css" library="css">
+		</h:outputStylesheet>
+
+		<h:outputStylesheet name="buttonStyle.css" library="css" />
+	</ui:define>
+
+	<ui:define name="title">Detalhes cardápio</ui:define>
+
+
+	<ui:define name="container">
+		<div class="ui-fluid">
+			<h:body>
+				<p:growl id="mensages" autoUpdate="true" showDetail="true"
+					showSummary="true" />
+				<h:form id="form">
+					<p:growl id="msgs" showDetail="true" />
+
+					<p:breadCrumb>
+
+						<p:menuitem value="Dashboard"
+							outcome="main_page_emp?faces-redirect=true" style="color: #222;" />
+
+						<p:menuitem value="Cardápios"
+							outcome="/pages/employee/menu?faces-redirect=true"
+							style="color: #222;" />
+
+						<p:menuitem value="Detalhes menu"
+							outcome="/pages/employee/menu_detail?faces-redirect=true"
+							style="color: #222;" />
+
+
+					</p:breadCrumb>
+
+					<div align="center" class="ui-fluid  newpro">
+
+
+						<div align="left" class="ui-fluid">
+
+							<p:panelGrid columns="1" layout="grid"
+								style="width:100%;background:white !important"
+								styleClass="ui-panelgrid-blank">
+
+								<p:outputLabel style="font-size: 1.6em;"
+									value="Informações do Cardápio" />
+
+								<p:panelGrid columns="2" layout="grid"
+									columnClasses="ui-grid-col-2,ui-grid-col-10" style="width:100%">
+
+
+									<p:outputLabel value="Nome" />
+									<p:outputLabel id="outName" value="#{menuBean.menu.name}"
+										style="color:black !important" />
+
+									<p:outputLabel value="Data validade" />
+									<p:outputLabel id="outValidate" value="#{menuBean.menu.date}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</p:outputLabel>
+
+									<p:outputLabel value="Situação" />
+									<p:outputLabel id="outSituation"
+										value="#{menuBean.menu.ativo ==  true ? 'Ativo' : 'Desativado'}" />
+
+
+								</p:panelGrid>
+								<p:separator />
+
+								<p:outputLabel style="font-size: 1.1em;"
+									value="Todos os itens do Cardápio" />
+							</p:panelGrid>
+
+							<p:dataTable id="itensMenu" value="#{menuBean.menu.menuItens}"
+								var="menuItem" reflow="true">
+
+								<p:column headerText="Id" width="5%">
+
+									<h:outputText value="#{menuItem.id}" />
+
+								</p:column>
+
+								<p:column headerText="Nome" width="15%">
+									<p:link outcome="/pages/employee/product_detail">
+										<h:outputText value="#{menuItem.product.name}" />
+										<f:param name="product" value="#{menuItem.product.id}"></f:param>
+									</p:link>
+								</p:column>
+
+								<p:column headerText="Preço" width="5%">
+									<h:outputText id="txtPrice" value="R$ #{menuItem.price}" />
+								</p:column>
+
+
+							</p:dataTable>
+
+							<p:toolbar style="background:white;">
+
+								<f:facet name="left">
+
+									<p:button value="Voltar"
+										outcome="/pages/employee/menu?faces-redirect=true"
+										style="width:120px" />
+
+
+								</f:facet>
+
+							</p:toolbar>
+						</div>
+					</div>
+				</h:form>
+
+
+			</h:body>
+		</div>
+	</ui:define>
+</ui:composition>
