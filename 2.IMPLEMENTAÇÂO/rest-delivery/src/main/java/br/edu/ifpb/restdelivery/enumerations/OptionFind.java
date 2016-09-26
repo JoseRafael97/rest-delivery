@@ -4,9 +4,8 @@ public enum OptionFind {
 	
 
 	RECAD("Recentes adicionados"),
-	MAIOP("Maiores preços"),
-	MENP("Menores preços"),
-	MAISV("Mais vendidos");
+	MAISV("Mais vendidos"),
+	RATING("Melhores Avaliados");
 
 	
 	String nome;

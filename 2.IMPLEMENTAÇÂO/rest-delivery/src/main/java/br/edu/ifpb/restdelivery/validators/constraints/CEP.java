@@ -9,7 +9,11 @@ import javax.validation.Constraint;
 import javax.validation.OverridesAttribute;
 import javax.validation.Payload;
 import javax.validation.constraints.Pattern;
-
+/**
+ * Anotation que válida a String de um cep no formato 99999-999
+ * @author rafaelfeitosa - <a href="https://github.com/JoseRafael97 ></a>
+ *
+ */
 @Target({ ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {})

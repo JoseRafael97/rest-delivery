@@ -10,6 +10,11 @@ import javax.validation.OverridesAttribute;
 import javax.validation.Payload;
 import javax.validation.constraints.Pattern;
 
+/**
+ * Anotation que valida o número de um telefone celular no formato (99)9999-99999
+ * @author rafaelfeitosa - <a href="https://github.com/JoseRafael97 ></a>
+ *
+ */
 @Target({ ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {})
