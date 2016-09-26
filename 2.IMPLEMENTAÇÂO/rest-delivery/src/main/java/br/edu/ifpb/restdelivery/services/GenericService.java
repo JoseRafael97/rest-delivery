@@ -60,6 +60,7 @@ public interface GenericService<T, K extends Serializable> {
 	 * 
 	 * @return Lista de objetos do tipo da Entidade requisitada.
 	 * @throws RestDeliveryPersistenceException 
+	 * @throws RestDeliveryException 
 	 */
-	public List<T> listAll() throws RestDeliveryPersistenceException;
+	public List<T> listAll() throws RestDeliveryPersistenceException, RestDeliveryException;
 }

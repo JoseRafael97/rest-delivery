@@ -63,9 +63,10 @@ public class ImplGenericService<T, K extends Serializable> implements GenericSer
 
 	/**
 	 * Método que busca todos os objetos do tipo da classe
+	 * @throws RestDeliveryException 
 	 */
 	@Override
-	public List<T> listAll() throws RestDeliveryPersistenceException {
+	public List<T> listAll() throws RestDeliveryPersistenceException, RestDeliveryException {
 		return dao.findAll();
 	}
 
