@@ -1,5 +1,6 @@
 package br.edu.ifpb.restdelivery.exceptions;
 
+
 public class ConstraintViolateException extends RestDeliveryException{
 	
 	/**

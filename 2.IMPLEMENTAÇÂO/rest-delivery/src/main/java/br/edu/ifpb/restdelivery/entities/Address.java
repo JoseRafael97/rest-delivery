@@ -16,13 +16,13 @@ import br.edu.ifpb.restdelivery.validators.constraints.Number;
 /**
  * Entidade que representa um Endereço de um cliente ou funcionário.
  * 
- * @author rafaelfeitosa
+ * @author rafaelfeitosa - <a href="https://github.com/JoseRafael97 ></a>
  *
  */
 
 @Entity
 @Table
-@NamedQueries({@NamedQuery(name = "address.findByStreet", query = "SELECT a FROM Address a where a.street = :street")})
+@NamedQueries({@NamedQuery(name = "address.findByStreet", query = "SELECT a FROM Address a where a.street LIKE :street")})
 public class Address extends SuperId {
 
 	/**

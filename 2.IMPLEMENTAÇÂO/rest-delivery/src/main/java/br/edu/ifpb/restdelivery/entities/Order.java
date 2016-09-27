@@ -22,10 +22,21 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+/**
+ * Classe que representa um pedido de um cliente.
+ * 
+ * @author rafaelfeitosa - <a href="https://github.com/JoseRafael97 ></a>
+ *
+ */
+
 @Entity
 @Table(name = "tab_order")
 @NamedQueries({ @NamedQuery(name = "order.countAll", query = "SELECT COUNT(o) FROM Order o"),
-		@NamedQuery(name = "order.countOrderRating", query = "SELECT COUNT(o) FROM Order o where o.ratingOrder.number IS NOT NULL") })
+		@NamedQuery(name = "order.countOrderRating", query = "SELECT COUNT(o) FROM Order o where o.ratingOrder.number IS NOT NULL"),
+		@NamedQuery(name = "order.findOrderToRating", query = "SELECT o FROM Order o where o.ratingOrder.comments IS NOT NULL  order by o.ratingOrder.date DESC"),
+		@NamedQuery(name = "order.findOrderFindSoBuy", query = "SELECT o.data, it.itemMenu.product.name, COUNT(it.itemMenu.product.name) FROM Order o JOIN o.itemProducts it GROUP BY o.data, it.itemMenu.product.name ORDER BY o.data DESC"),
+		@NamedQuery(name = "order.findOrderToAmountBuy", query = "SELECT it.itemMenu.product.name, COUNT(it.itemMenu.product) FROM Order o JOIN o.itemProducts it WHERE (SELECT COUNT(p.id) FROM it.itemMenu.product p) > :number GROUP BY it.itemMenu.product.name ORDER BY o.data DESC"),
+		@NamedQuery(name = "order.findAverageBuy", query="SELECT o.data , AVG(o.ratingOrder.number) FROM Order o GROUP BY o.data" )})
 public class Order extends SuperId {
 
 	/**

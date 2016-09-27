@@ -4,14 +4,23 @@ package br.edu.ifpb.restdelivery.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
 
 import com.sun.istack.NotNull;
 
+/**
+ * Classe que representa um item comprado em um pedido de um cliente.
+ * 
+ * @author rafaelfeitosa - <a href="https://github.com/JoseRafael97 ></a>
+ *
+ */
 
 @Entity
 @Table
+@NamedQueries({@NamedQuery(name = "itemProduct.findBestsellingCategory" , query = "SELECT im.product.category, COUNT(im.product.category)  FROM ItemProduct ip JOIN ip.itemMenu im GROUP BY im.product.category")})
 public class ItemProduct extends SuperId{
 
 	/**

@@ -30,10 +30,9 @@ public class ImplProductDAO extends ImplGenericDAO<Product, Long> implements Pro
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/*/**
+	/**
 	 * Método filtra os produtos por meio de um FILTERPRODUCT criado, por ex. por nome.
 	 */
-	
 	public List<Product> filterProduct(FilterProducts filterProducts) {
 		CriteriaQuery<Product> criteriaQuery = createFilterToProduct(filterProducts);
 
@@ -62,7 +61,8 @@ public class ImplProductDAO extends ImplGenericDAO<Product, Long> implements Pro
 		Predicate predicate = builder.and();
 
 		if (filterProducts.getName() != null && !(filterProducts.getName().isEmpty())) {
-			predicate = builder.and(predicate, builder.like(from.get("name"), "%" + filterProducts.getName() + "%"));
+			predicate = builder.and(predicate, builder.like(builder.lower(from.get("name")), "%" + filterProducts.getName().toLowerCase() + "%"));
+			predicate = builder.or(predicate, builder.like(builder.lower(from.get("description")), "%"+filterProducts.getName()+"%"));
 		}
 
 		criteriaQuery.where(predicate);
@@ -186,8 +186,6 @@ public class ImplProductDAO extends ImplGenericDAO<Product, Long> implements Pro
 		return initialMap;
 	}
 	
-	
-
 	
 	
 

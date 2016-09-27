@@ -14,6 +14,13 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 import br.edu.ifpb.restdelivery.enumerations.TypesCartCreditFlag;
 
+/**
+ * Classe que representa um Pagamento de um pedido de um cliente.
+ * 
+ * @author rafaelfeitosa - <a href="https://github.com/JoseRafael97 ></a>
+ *
+ */
+
 @Entity
 @Table
 public class Payment extends SuperId {

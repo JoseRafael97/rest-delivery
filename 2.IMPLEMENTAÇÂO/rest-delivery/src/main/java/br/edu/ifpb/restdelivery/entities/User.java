@@ -17,6 +17,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import br.edu.ifpb.restdelivery.enumerations.Grupo;
 
+/**
+ * Classe que representa um usuário para acesso do sistema, podendo ser um cliente, operador, entregador ou administrador.
+ * 
+ * @author rafaelfeitosa - <a href="https://github.com/JoseRafael97 ></a>
+ *
+ */
+
 @NamedQueries({ @NamedQuery(name = "user.findByName", query = "SELECT u FROM User u WHERE u.login = :login"),
 		@NamedQuery(name = "user.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email") })
 @Entity
@@ -33,7 +40,7 @@ public class User extends SuperId {
 	private String password;
 	private String email;
 	private Grupo grupo;
-
+	
 	private Person person;
 
 	public User() {

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -17,7 +18,9 @@ import javax.persistence.TypedQuery;
 import org.apache.commons.lang3.time.DateUtils;
 
 import br.edu.ifpb.restdelivery.dao.OrderDAO;
+
 import br.edu.ifpb.restdelivery.entities.Order;
+import br.edu.ifpb.restdelivery.entities.ResultMap;
 import br.edu.ifpb.restdelivery.exceptions.RestDeliveryPersistenceException;
 
 /**
@@ -73,9 +76,9 @@ public class ImplOrderDAO extends ImplGenericDAO<Order, Long> implements OrderDA
 		return result;
 	}
 
-	
 	/**
-	 * Cria um mapa para evitar um mapa vazio, informando o numero de dias para o mapa e data inicial.
+	 * Cria um mapa para evitar um mapa vazio, informando o numero de dias para
+	 * o mapa e data inicial.
 	 */
 	public Map<Date, BigDecimal> createMap(Integer numberDays, Calendar initialDate) {
 
@@ -90,7 +93,7 @@ public class ImplOrderDAO extends ImplGenericDAO<Order, Long> implements OrderDA
 	}
 
 	/**
-	 * Método que contar o  numero total de pedidos já cadastrados.
+	 * Método que contar o numero total de pedidos já cadastrados.
 	 */
 	public Long countAll() {
 		try {
@@ -102,7 +105,6 @@ public class ImplOrderDAO extends ImplGenericDAO<Order, Long> implements OrderDA
 		}
 
 	}
-	
 
 	@Override
 	public Long countRatingAll() {
@@ -113,10 +115,12 @@ public class ImplOrderDAO extends ImplGenericDAO<Order, Long> implements OrderDA
 		} catch (NoResultException e) {
 			return null;
 		}
-		
+
 	}
 
-
+	/**
+	 * Buscar Produto por Rating.
+	 */
 	@Override
 	public List<Order> findOrderToRating() {
 		try {
@@ -127,7 +131,125 @@ public class ImplOrderDAO extends ImplGenericDAO<Order, Long> implements OrderDA
 		} catch (NoResultException e) {
 			return null;
 		}
-		
+
+	}
+
+	/**
+	 * Buscar mais comprados.
+	 * 
+	 * @return
+	 */
+	public Map<Date, ResultMap> findSoBuy(Integer numberDays) {
+
+		numberDays -= 1;
+		Calendar initialDate = Calendar.getInstance();
+		initialDate = DateUtils.truncate(initialDate, Calendar.DAY_OF_MONTH);
+		initialDate.add(Calendar.DAY_OF_MONTH, numberDays * -1);
+
+		Map<Date, ResultMap> values = createMapRe(numberDays, initialDate);
+
+		EntityManager em = getEntityManager();
+
+		List<Object[]> resultado = null;
+
+		TypedQuery<Object[]> query = em.createNamedQuery("order.findOrderFindSoBuy", Object[].class);
+
+		resultado = query.getResultList();
+
+		if (resultado != null) {
+			for (int i = 0; i < resultado.size(); i++) {
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime((Date) (resultado.get(i)[0]));
+
+				values.put(DateUtils.truncate(calendar, Calendar.DAY_OF_MONTH).getTime(),
+						new ResultMap((String) (resultado.get(i))[1], (Long) (resultado.get(i))[2]));
+			}
+		}
+
+		return values;
+
+	}
+
+	/**
+	 * Cria um mapa para evitar um mapa vazio, informando o numero de dias para
+	 * o mapa e data inicial.
+	 */
+	private Map<Date, ResultMap> createMapRe(Integer numberDays, Calendar initialDate) {
+
+		Map<Date, ResultMap> initialMap = new TreeMap<>();
+		initialDate = (Calendar) initialDate.clone();
+
+		for (int i = 0; i <= numberDays; i++) {
+			initialMap.put(initialDate.getTime(), null);
+			initialDate.add(Calendar.DAY_OF_MONTH, 1);
+		}
+		return initialMap;
+	}
+
+	/**
+	 * Cria um mapa para evitar um mapa vazio, informando o numero de dias para
+	 * o mapa e data inicial Para avaliação.
+	 */
+	private Map<Date, Double> createMapRating(Integer numberDays, Calendar initialDate) {
+
+		Map<Date, Double> initialMap = new TreeMap<>();
+		initialDate = (Calendar) initialDate.clone();
+
+		for (int i = 0; i <= numberDays; i++) {
+			initialMap.put(initialDate.getTime(), 0.0);
+			initialDate.add(Calendar.DAY_OF_MONTH, 1);
+		}
+		return initialMap;
+	}
+
+	public Map<String, Long> findOrderToAmountBuy(Long number) {
+
+		Map<String, Long> values = new HashMap<>();
+
+		EntityManager em = getEntityManager();
+
+		List<Object[]> resultado = null;
+
+		TypedQuery<Object[]> query = em.createNamedQuery("order.findOrderToAmountBuy", Object[].class);
+		query.setParameter("number", number);
+		resultado = query.getResultList();
+
+		if (resultado != null) {
+			for (int i = 0; i < resultado.size(); i++) {
+				values.put(((String) (resultado.get(i))[0]), ((Long) (resultado.get(i))[1]));
+			}
+		}
+
+		return values;
+	}
+
+	public Map<Date, Double> findAverageBuy(Integer numberDays) {
+
+		numberDays -= 1;
+		Calendar initialDate = Calendar.getInstance();
+		initialDate = DateUtils.truncate(initialDate, Calendar.DAY_OF_MONTH);
+		initialDate.add(Calendar.DAY_OF_MONTH, numberDays * -1);
+
+		Map<Date, Double> values = createMapRating(numberDays, initialDate);
+
+		EntityManager em = getEntityManager();
+
+		List<Object[]> resultado = null;
+
+		TypedQuery<Object[]> query = em.createNamedQuery("order.findAverageBuy", Object[].class);
+		resultado = query.getResultList();
+
+		if (resultado != null) {
+			for (int i = 0; i < resultado.size(); i++) {
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime((Date) (resultado.get(i)[0]));
+
+				values.put(DateUtils.truncate(calendar, Calendar.DAY_OF_MONTH).getTime(),
+						(Double) (resultado.get(i))[1]);
+			}
+		}
+
+		return values;
 	}
 
 }

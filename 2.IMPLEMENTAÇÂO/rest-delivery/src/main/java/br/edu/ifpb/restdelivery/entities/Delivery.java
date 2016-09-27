@@ -11,6 +11,12 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ * Classe que representa Uma entrega de pedido para um cliente.
+ * 
+ * @author rafaelfeitosa - <a href="https://github.com/JoseRafael97 ></a>
+ *
+ */
 @Entity
 @Table
 public class Delivery extends SuperId  {

@@ -13,6 +13,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Classe que representa uma avaliação de um produto (item) do restaurante. 
+ * 
+ * @author rafaelfeitosa - <a href="https://github.com/JoseRafael97 ></a>
+ *
+ */
+
 @Entity
 @Table(name = "rating_product")
 @NamedQueries({@NamedQuery( name = "ratingProduct.averageProductRating", query = "SELECT AVG(r.number) FROM RatingProduct r JOIN r.product p WHERE p.name LIKE :nameProduct"),
@@ -28,8 +35,9 @@ public class RatingProduct extends SuperId {
 	private String comment;
 	private Date date;
 	private Product product;
+	private String userNameCustomer;
 
-	@Column
+	@Column @NotNull
 	public Float getNumber() {
 		return number;
 	}
@@ -38,7 +46,7 @@ public class RatingProduct extends SuperId {
 		this.number = number;
 	}
 
-	@Column
+	@Column 
 	public String getComment() {
 		return comment;
 	}
@@ -57,7 +65,7 @@ public class RatingProduct extends SuperId {
 		this.date = date;
 	}
 	
-	
+
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "product_id")
@@ -68,7 +76,19 @@ public class RatingProduct extends SuperId {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+	
+	
+	//@NotNull
+	@Column(name = "user_name_customer")
+	public String getUserNameCustomer() {
+		return userNameCustomer;
+	}
 
+	public void setUserNameCustomer(String userNameCustomer) {
+		this.userNameCustomer = userNameCustomer;
+	}
+
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -76,6 +96,8 @@ public class RatingProduct extends SuperId {
 		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((number == null) ? 0 : number.hashCode());
+		result = prime * result + ((product == null) ? 0 : product.hashCode());
+		result = prime * result + ((userNameCustomer == null) ? 0 : userNameCustomer.hashCode());
 		return result;
 	}
 
@@ -112,16 +134,30 @@ public class RatingProduct extends SuperId {
 		} else if (!number.equals(other.number)) {
 			return false;
 		}
+		if (product == null) {
+			if (other.product != null) {
+				return false;
+			}
+		} else if (!product.equals(other.product)) {
+			return false;
+		}
+		if (userNameCustomer == null) {
+			if (other.userNameCustomer != null) {
+				return false;
+			}
+		} else if (!userNameCustomer.equals(other.userNameCustomer)) {
+			return false;
+		}
 		return true;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "RatingProduct [number=" + number + ", comment=" + comment + ", date=" + date + ", product=" + product
-				+ "]";
+				+ ", userNameCustomer=" + userNameCustomer + "]";
 	}
 
 	
-
 	
 }

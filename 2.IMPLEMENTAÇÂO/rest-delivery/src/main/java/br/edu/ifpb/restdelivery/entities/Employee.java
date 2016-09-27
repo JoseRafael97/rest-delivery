@@ -15,6 +15,13 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import br.edu.ifpb.restdelivery.validators.constraints.Number;
 
+/**
+ * Classe que representa um Empregado do restaurante.
+ * 
+ * @author rafaelfeitosa - <a href="https://github.com/JoseRafael97 ></a>
+ *
+ */
+
 @Entity
 @PrimaryKeyJoinColumn(name = "person_id")
 @Table(uniqueConstraints = { @UniqueConstraint(name = "uc_employee", columnNames = { "ctps", "tellphone", "rg" }) })

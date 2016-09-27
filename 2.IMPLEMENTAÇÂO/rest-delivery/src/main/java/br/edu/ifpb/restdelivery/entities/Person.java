@@ -17,6 +17,12 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.br.CPF;
 
+/**
+ * Classe que representa um pessoa que pode ser um cliente ou empregado.
+ * 
+ * @author rafaelfeitosa - <a href="https://github.com/JoseRafael97 ></a>
+ *
+ */
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)

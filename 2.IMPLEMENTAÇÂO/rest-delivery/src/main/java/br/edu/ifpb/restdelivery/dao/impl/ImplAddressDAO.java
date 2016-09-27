@@ -40,7 +40,7 @@ public class ImplAddressDAO extends ImplGenericDAO<Address, Long> implements Add
 	public List<Address> findByStreet(String street) {
 		try {
 			TypedQuery<Address> query = em.createNamedQuery("address.findByStreet", Address.class);
-			query.setParameter("street", "%"+street+"%");
+			query.setParameter("street", street+"%");
 			return query.getResultList();
 
 		} catch (NoResultException e) {

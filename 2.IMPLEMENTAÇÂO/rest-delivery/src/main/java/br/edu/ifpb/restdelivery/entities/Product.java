@@ -21,7 +21,13 @@ import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import br.edu.ifpb.restdelivery.enumerations.CategoryType;
-
+/**
+ * 
+ * Classe que representa um item do restaurante antes de ser colocado no cardápios.
+ * 
+ * @author rafaelfeitosa - <a href="https://github.com/JoseRafael97 ></a>
+ *
+ */
 @Entity
 @Table(uniqueConstraints = { @UniqueConstraint(name = "uc_product", columnNames = { "name" }) })
 @NamedQueries({ @NamedQuery(name = "product.filterByName", query = "SELECT p FROM Product p WHERE p.name like :name"),
@@ -39,6 +45,7 @@ public class Product extends SuperId {
 	private Float weight;
 	private String nutricionInformations;
 	private List<RatingProduct> ratingProducts;
+	
 
 	public Product() {
 	}

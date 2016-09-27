@@ -11,6 +11,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Classe que representa um item do carpápio(Menu) do restaurante.
+ * 
+ * @author rafaelfeitosa - <a href="https://github.com/JoseRafael97 ></a>
+ *
+ */
+
 @Entity
 @Table
 @NamedQueries({
@@ -54,8 +61,6 @@ public class ItemMenu extends SuperId {
 		this.product = product;
 	}
 
-
-	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "menu_id")
 	public Menu getMenu() {
@@ -74,7 +79,6 @@ public class ItemMenu extends SuperId {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((menu == null) ? 0 : menu.hashCode());
 		result = prime * result + ((price == null) ? 0 : price.hashCode());
 		result = prime * result + ((product == null) ? 0 : product.hashCode());
 		return result;
@@ -94,13 +98,6 @@ public class ItemMenu extends SuperId {
 			return false;
 		}
 		ItemMenu other = (ItemMenu) obj;
-		if (menu == null) {
-			if (other.menu != null) {
-				return false;
-			}
-		} else if (!menu.equals(other.menu)) {
-			return false;
-		}
 		if (price == null) {
 			if (other.price != null) {
 				return false;
@@ -122,7 +119,7 @@ public class ItemMenu extends SuperId {
 
 	@Override
 	public String toString() {
-		return "ItemMenu [price=" + price + ", product=" + product + ", menu=" + menu + "]";
+		return "ItemMenu [price=" + price + ", product=" + product + "]";
 	}
 
 

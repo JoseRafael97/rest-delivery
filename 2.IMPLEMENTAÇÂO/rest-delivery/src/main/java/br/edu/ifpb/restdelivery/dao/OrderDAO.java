@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import br.edu.ifpb.restdelivery.entities.Order;
+import br.edu.ifpb.restdelivery.entities.ResultMap;
 import br.edu.ifpb.restdelivery.exceptions.RestDeliveryPersistenceException;
 
 
@@ -52,5 +53,26 @@ public interface OrderDAO extends GenericDAO<Order, Long> {
 	 * @return
 	 */
 	public List<Order> findOrderToRating();
+	
+	/**
+	 * Método que buscar os produtos que mais aparecem em pedidos.
+	 * @param numero
+	 * @param numberDays
+	 * @return
+	 */
+	public Map<Date, ResultMap>  findSoBuy(Integer numberDays);
+	
+	/**
+	 * Busca o nome e quantidade do produto comprada considerando o numero de minimo de compra de um item.
+	 * @param number
+	 * @return
+	 */
+	public Map<String, Long> findOrderToAmountBuy(Long number);
+	
+	/**
+	 * Busca a média da avaliações da loja por data
+	 * @return
+	 */
+	public Map<Date, Double> findAverageBuy(Integer numberDays);
 
 }

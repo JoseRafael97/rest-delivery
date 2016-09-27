@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -15,9 +14,17 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
+/**
+ * Classe que representa um Cardápio (MENU) do restaurante.
+ * 
+ * @author <a href="https://github.com/JoseRafael97 >rafaelfeitosa</a>
+ *
+ */
 
 @Entity
 @Table(uniqueConstraints = { @UniqueConstraint(name = "uc_menu", columnNames = { "name" }) })
@@ -50,7 +57,7 @@ public class Menu extends SuperId{
 		this.name = name;
 	}
 
-	@NotNull
+	@NotNull @Future
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date")
 	public Date getDate() {
@@ -61,7 +68,7 @@ public class Menu extends SuperId{
 		this.date = date;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	public List<ItemMenu> getMenuItens() {
 		return menuItens;
 	}
