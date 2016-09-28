@@ -1,78 +1,109 @@
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/Teste.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/enumerations/OptionFind.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/FinallyOrderBean.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/AddressService.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/IFGenericService.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/ItemProduct.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/ItemMenu.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/Person.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/AddressDAO.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/GenericDAO.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/Tools.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/converters/EmployeeConverter.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/User.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/AddressBean.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/OrdenedLitlePriceComparator.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/jsf/JsfExceptionHandler.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/Product.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/OrderService.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/converters/MenuConverter.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/Messages.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/FilterProducts.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/enumerations/Grupo.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/Delivery.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/Validator.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/MenuBean.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/jsf/FacesUtil.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/PersonService.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/converters/ProductConverter.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/exceptions/RestDeliveryException.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/ListEmployee.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/CardapioBean.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/LogoutBean.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/Payment.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/MenuService.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/UserBean.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/enumerations/CidadesPB.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/enumerations/StateNames.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/AbstractBean.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/exceptions/RestDeliveryPersistenceException.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/EmployeeBean.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/jsf/JsfExceptionHandlerFactory.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/Employee.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/OrderDAO.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/PersonDAO.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/GenericService.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/Address.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/jpa/Transactional.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/ClientDAO.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/OrdenedBigPriceComparable.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/UserDAO.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/Customer.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/CustomerBean.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/exceptions/LoginOrEmailInvalidoException.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/ListOrderBean.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/ListMenuBean.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/jpa/EntityManagerProducer.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/CustomerService.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/exceptions/ItemInesxistenteException.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/UserService.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/EmployeeDAO.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/ProductDAO.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/ProductService.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/DAO.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/AuthenticateBen.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/Order.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/exceptions/ItemExistenteException.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/ListProductBean.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/enumerations/CategoryType.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/EmployeeService.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/jpa/TransactionInterceptor.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/enumerations/PaymentType.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/ProductBean.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/MenuDAO.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/ImplGenericDAO.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/converters/ItemMenuConverter.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/RatingOrder.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/Menu.java
-/home/rafaelfeitosa/workspace/Projeto DACA/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/CustomerKartBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/exceptions/RestDeliveryException.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/converters/MenuConverter.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/CustomerBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/enumerations/PathFile.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/UserService.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/GraphLineBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/enumerations/PaymentType.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/ItemMenuBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/ItemMenuService.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/RatingOrder.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/Customer.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/Person.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/ItemProduct.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/jsf/JsfExceptionHandler.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/UserDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/Payment.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/ItemMenuDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/converters/AddressConverter.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/Delivery.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/Employee.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/enumerations/TypesCartCreditFlag.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/jsf/JsfExceptionHandlerFactory.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/ImplCustomerDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/DateValor.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/ListProductBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/enumerations/OptionFind.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/PersonDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/ImplPersonDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/filters/FilterProducts.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/ListOrderBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/converters/ProductConverter.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/RatingOrdeBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/ImplAddressDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/Menu.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/Product.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/GenericService.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/ItemMenu.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/EmployeeBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/ImplUserDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/GenericDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/jsf/FacesUtil.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/ImplEmployeeDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/Teste.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/ImplGenericService.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/converters/ItemMenuConverter.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/ListCustomerBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/EmployeeService.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/ImplItemMenuDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/OrderBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/validators/ValidatorCustomer.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/converters/OrderConverter.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/enumerations/Grupo.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/GraphBarBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/LazyLoadingListProductBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/validators/ValidatorProduct.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/validators/ValidatorEmployee.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/jpa/TransactionInterceptor.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/filters/FilterMenuItem.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/AddressService.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/OrderDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/validators/constraints/Number.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/ListEmployee.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/MenuBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/enumerations/StateNames.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/converters/CustomerConverter.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/ImplGenericDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/UserBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/ProductBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/AuthenticateBen.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/AbstractBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/ImplProductDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/ImplMenuDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/CustomerKartBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/converters/EmployeeConverter.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/impl/ImplOrderDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/Order.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/MenuService.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/ListMenuBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/EmployeeDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/tools/ToolsProduct.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/User.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/GraphPieBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/PersonService.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/jpa/Transactional.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/OrderService.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/RatingProduct.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/validators/ValidatorPerson.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/exceptions/ConstraintViolateException.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/enumerations/CategoryType.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/ProductService.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/MenuDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/AddressDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/DAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/FinallyOrderBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/MenuUserBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/Address.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/CustomerDAO.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/SuperId.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/services/impl/CustomerService.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/controller/AddressBean.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/jpa/EntityManagerProducer.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/exceptions/RestDeliveryPersistenceException.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/filters/FilterItemMenu.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/util/tools/Tools.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/entities/ResultMap.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/validators/ValidatorMenu.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/validators/constraints/CEP.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/validators/constraints/Phone.java
+/home/rafaelfeitosa/workspace/rest-delivery/2.IMPLEMENTAÇÂO/rest-delivery/src/main/java/br/edu/ifpb/restdelivery/dao/ProductDAO.java

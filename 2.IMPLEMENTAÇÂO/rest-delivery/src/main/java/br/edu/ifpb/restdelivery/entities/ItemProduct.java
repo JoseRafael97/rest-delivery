@@ -8,8 +8,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 
-import com.sun.istack.NotNull;
 
 /**
  * Classe que representa um item comprado em um pedido de um cliente.
