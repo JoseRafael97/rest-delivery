@@ -8,7 +8,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotNull;
 
 
 /**
@@ -34,8 +33,7 @@ public class ItemProduct extends SuperId{
 	public ItemProduct() {
 	}
 
-
-	@NotNull
+	@javax.validation.constraints.NotNull
 	@ManyToOne
 	public ItemMenu getItemMenu() {
 		return itemMenu;
