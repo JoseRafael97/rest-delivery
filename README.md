@@ -2,7 +2,7 @@
 
 ![alt tag](https://github.com/JoseRafael97/rest-delivery-jsf-primefaces-jpa-cdi-/blob/master/2.IMPLEMENTA%C3%87%C3%82O/rest-delivery/src/main/webapp/resources/images/logogit.png)
 ### Pré-requisitos
-Para utilizar o serviço JAAS é necessário utilizar o servidor de aplicação Glassfish, configurando os dados de acesso ao banco no mesmo.
+Para utilizar o serviço de autenticação JAAS é necessário utilizar o servidor de aplicação Glassfish, configurando os dados de acesso ao banco no mesmo.
 
 ## Construído com
 
